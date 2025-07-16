@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Header } from '../../core/header/header';
-import { Footer } from '../../core/footer/footer';
+import { Header } from '../../shared/header/header';
+import { Footer } from '../../shared/footer/footer';
 import { RouterLink } from '@angular/router';
 import {
   FormBuilder,

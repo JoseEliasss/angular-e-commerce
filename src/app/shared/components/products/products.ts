@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HomePage } from '../../../pages/home-page/home-page';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
