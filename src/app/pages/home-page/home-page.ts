@@ -5,10 +5,18 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Countercomponent } from '../countercomponent/countercomponent';
 import { Products } from '../../shared/components/products/products';
+import { Categories } from '../../shared/components/products/categories/categories';
 
 @Component({
   selector: 'app-home-page',
-  imports: [Header, Footer, CommonModule, Countercomponent, Products],
+  imports: [
+    Header,
+    Footer,
+    CommonModule,
+    Countercomponent,
+    Products,
+    Categories,
+  ],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })

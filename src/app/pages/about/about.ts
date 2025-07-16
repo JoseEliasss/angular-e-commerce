@@ -1,48 +1,17 @@
 import { Component } from '@angular/core';
+
+import { CommonModule } from '@angular/common';
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
-import { CommonModule } from '@angular/common';
+import { Categories } from '../../shared/components/products/categories/categories';
 
 @Component({
   selector: 'app-about',
-  imports: [Header, Footer, CommonModule],
+  imports: [CommonModule, Header, Footer, Categories],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
 export class About {
-  hoveredIndex: number | null = null;
-
-  images = [
-    {
-      default: 'assets/Category-Phone=Camera-Hover=No.png',
-      hover: 'assets/Category-Phone=Camera-Hover=Yes.png',
-    },
-    {
-      default: 'assets/Category-Phone=Computer-Hover=No.png',
-      hover: 'assets/Category-Phone=Computer-Hover=Yes.png',
-    },
-    {
-      default: 'assets/Category-Phone=Gaming-Hover=No.png',
-      hover: 'assets/Category-Phone=Gaming-Hover=Yes.png',
-    },
-    {
-      default: 'assets/Category-Phone=Headphone-Hover=No.png',
-      hover: 'assets/Category-Phone=Headphone-Hover=Yes.png',
-    },
-    {
-      default: 'assets/Category-Phone=Phone-Hover=No.png',
-      hover: 'assets/Category-Phone=Phone-Hover=Yes.png',
-    },
-    {
-      default: 'assets/Category-Phone=SmartWatch-Hover=No.png',
-      hover: 'assets/Category-Phone=SmartWatch-Hover=Yes.png',
-    },
-  ];
-
-  setHovered(index: number | null) {
-    this.hoveredIndex = index;
-  }
-
   founders = [
     {
       image: 'assets/founder1.png',

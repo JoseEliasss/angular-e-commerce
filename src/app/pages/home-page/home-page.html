@@ -39,13 +39,21 @@
       </span>
     </span>
   </div>
-  <!-- <div class="product-grid">
-    <div class="product-card" *ngFor="let product of products">
-      <img [src]="product.image" alt="{{ product.title }}" />
-      <h3>{{ product.title }}</h3>
-      <p>${{ product.price }}</p>
-    </div>
-  </div> -->
+
   <app-products></app-products>
+  <div class="secondSection">
+    <div class="secondSection">
+      <span class="todays">
+        <span></span>
+        <p>Categories</p></span
+      >
+      <div class="browsing">
+        <span class="flashSales">
+          <h2>Browse By Category</h2>
+        </span>
+        <app-categories></app-categories>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
