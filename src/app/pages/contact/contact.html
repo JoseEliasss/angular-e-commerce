@@ -1,0 +1,88 @@
+<div class="everything">
+  <app-header></app-header>
+  <div class="container">
+    <div class="first-section">
+      <span class="first-section-span">
+        <span
+          ><img src="/assets/call.png" alt="call" height="30px" width="30px" />
+          <h3>Call To Us</h3></span
+        >
+        <p>We are available 24/7, 7days a week.</p>
+        <p>Phone: <a href="tel:78836828">+961 78836828</a></p>
+      </span>
+      <span class="first-section-span-second">
+        <span
+          ><img src="/assets/email.png" alt="call" height="30px" width="30px" />
+          <h3>Call To Us</h3></span
+        >
+        <p>Fill out our form and we will contact you within 24 hours.</p>
+        <p>
+          Emails:
+          <a href="mailto:customer@exclusive.com">customer&#64;exclusive.com</a>
+        </p>
+        <p>
+          Emails:
+          <a href="mailto:support@exclusive.com">support&#64;exclusive.com</a>
+        </p>
+      </span>
+    </div>
+    <div class="second-section">
+      <form (ngSubmit)="handleSubmit()" [formGroup]="contactForm" class="form">
+        <span>
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            formControlName="name"
+          />
+          <small
+            *ngIf="(f['name'].touched || f['name'].dirty) && f['name'].errors?.['required']"
+          >
+            Name is required
+          </small>
+          <small
+            *ngIf="(f['name'].touched || f['name'].dirty) && f['name'].errors?.['minlength']"
+            >(min 2 characters)</small
+          >
+        </span>
+        <span>
+          <label for="email">Email or Phone Number</label>
+          <input
+            type="text"
+            placeholder="Enter Email or Phone Number"
+            formControlName="email"
+          />
+          <small
+            *ngIf="(f['email'].touched || f['email'].dirty) && f['email'].errors?.['required']"
+          >
+            Email is required
+          </small>
+          <small
+            *ngIf="(f['email'].touched || f['email'].dirty) && f['email'].errors?.['email']"
+            >Wrong email format</small
+          >
+        </span>
+        <span>
+          <label for="message">Message:</label>
+          <textarea
+            placeholder="Your message"
+            formControlName="message"
+            rows="4"
+          ></textarea>
+
+          <small
+            *ngIf="(f['message'].touched || f['message'].dirty) && f['message'].errors?.['required']"
+          >
+            Message is required
+          </small>
+          <small
+            *ngIf="(f['message'].touched || f['message'].dirty) && f['message'].errors?.['maxlength']"
+            >(Maximum 500 characters)</small
+          >
+        </span>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

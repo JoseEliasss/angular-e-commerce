@@ -1,0 +1,37 @@
+footer {
+  height: 35vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 2em;
+
+  margin-top: 5em;
+
+  h2 {
+    padding-bottom: 1em;
+  }
+}
+.sections {
+  color: white;
+  line-height: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  input {
+    background-color: black;
+    color: aliceblue;
+    border-color: white;
+    border-width: 3px;
+    border-radius: 5%;
+    padding: 6px;
+  }
+}

@@ -1,0 +1,50 @@
+<app-header> </app-header>
+<div class="signup">
+  <img src="/assets/login.png" alt="login.png" />
+  <div class="form">
+    <h1>Log in to Exclusive</h1>
+    <p>enter your details below</p>
+    <br />
+    <form class="form" (ngSubmit)="loginAcc()" [formGroup]="loginForm">
+      <span>
+        <label for="email">Email or Phone Number</label>
+        <input
+          type="text"
+          placeholder="Enter Email or Phone Number"
+          formControlName="email"
+        />
+        <small
+          *ngIf="(f['email'].touched || f['email'].dirty) && f['email'].errors?.['required']"
+        >
+          Email is required
+        </small>
+        <small
+          *ngIf="(f['email'].touched || f['email'].dirty) && f['email'].errors?.['email']"
+          >Wrong email format</small
+        >
+      </span>
+      <span>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          formControlName="password"
+        />
+        <small
+          *ngIf="(f['password'].touched || f['password'].dirty) && f['password'].errors?.['required']"
+          >password required</small
+        >
+        <small
+          *ngIf="(f['password'].touched|| f['password'].dirty) && f['password'].errors?.['minlength']"
+          >(min length 6 characters)</small
+        >
+      </span>
+      <span class="buttons">
+        <button class="login" type="submit">Log in</button>
+        <a href="">forget password?</a>
+      </span>
+      <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>

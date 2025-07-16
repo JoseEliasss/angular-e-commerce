@@ -1,0 +1,75 @@
+<app-header> </app-header>
+
+<div class="signup">
+  <img src="assets/login.png" alt="login.png" />
+
+  <div class="form">
+    <h1>Create an account</h1>
+    <p>Enter your details below</p>
+
+    <form [formGroup]="signupForm" class="form" (ngSubmit)="createAcc()">
+      <span>
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          formControlName="name"
+        />
+        <small
+          *ngIf="(f['name'].touched || f['name'].dirty) && f['name'].errors?.['required']"
+        >
+          Name is required
+        </small>
+        <small
+          *ngIf="(f['name'].touched || f['name'].dirty) && f['name'].errors?.['minlength']"
+          >(min 2 characters)</small
+        >
+      </span>
+
+      <span>
+        <label for="email">Email or Phone Number</label>
+        <input
+          type="text"
+          placeholder="Enter Email or Phone Number"
+          formControlName="email"
+        />
+        <small
+          *ngIf="(f['email'].touched || f['email'].dirty) && f['email'].errors?.['required']"
+        >
+          Email is required
+        </small>
+        <small
+          *ngIf="(f['email'].touched || f['email'].dirty) && f['email'].errors?.['email']"
+          >Wrong email format</small
+        >
+      </span>
+
+      <span>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          formControlName="password"
+        />
+        <small
+          *ngIf="(f['password'].touched || f['password'].dirty) && f['password'].errors?.['required']"
+        >
+          Password is required
+        </small>
+
+        <small
+          *ngIf="(f['password'].touched || f['password'].dirty) && f['password'].errors?.['minlength']"
+        >
+          Password must be at least 6 characters
+        </small>
+      </span>
+
+      <button class="createAccount" type="submit">Create Account</button>
+      <button class="SignUp" type="button">Sign up with Google</button>
+
+      <p>Already have an account? <a routerLink="/login">Log in</a></p>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

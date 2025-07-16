@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="container">
+  <div class="firstSection">
+    <span class="ourStory"
+      ><h1>Our Story</h1>
+      <p>
+        Launched in 2015, Exclusive is South Asia’s premier online shopping
+        marketplace with an active presence in Bangladesh. Supported by a wide
+        range of tailored marketing, data, and service solutions, Exclusive has
+        over 10,500 sellers, 300 brands, and serves over 3 million customers
+        across the region.
+      </p>
+      <p>
+        Exclusive offers more than 1 million products, and is growing rapidly.
+        It provides a diverse assortment across categories ranging from consumer
+        goods to specialized services.
+      </p>
+    </span>
+    <span> <img src="/assets/Side-Image.png" alt="ourStory" /> </span>
+  </div>
+  <div class="secondSection">
+    <div class="image-grid">
+      <div
+        class="image-wrapper"
+        *ngFor="let image of images; let i = index"
+        (mouseenter)="setHovered(i)"
+        (mouseleave)="setHovered(null)"
+      >
+        <img
+          [src]="hoveredIndex === i ? image.hover : image.default"
+          alt="Category Image"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="thirdSection">
+    <div class="founders" *ngFor="let founder of founders">
+      <img [src]="founder.image" alt="founderimage" />
+      <h2>{{ founder.name }}</h2>
+      <p>{{ founder.position }}</p>
+      <img [src]="founder.icon" alt="icons" />
+    </div>
+  </div>
+  <div class="fourthSection">
+    <span *ngFor="let s of services">
+      <img [src]="s.image" alt="services" />
+    </span>
+  </div>
+</div>
+
+<app-footer></app-footer>

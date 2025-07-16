@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.signup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10em;
+
+  img {
+    width: 781px;
+    height: 600px;
+    object-fit: cover;
+    background-color: aqua; // Optional for development preview
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  width: 100%;
+  max-width: 400px;
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 0.95em;
+
+    a {
+      color: black;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+  }
+  small {
+    color: #db4444;
+  }
+  span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    label {
+      font-size: 0.95em;
+      font-weight: 500;
+    }
+
+    input {
+      padding: 0.5em;
+      font-size: 1em;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      outline: none;
+
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+  }
+
+  button {
+    padding: 0.8em 2em;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .createAccount {
+    background-color: #db4444;
+    color: white;
+    border: none;
+  }
+
+  .SignUp {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    font-weight: 500;
+  }
+}
