@@ -1,0 +1,15 @@
+<div class="secondSection">
+  <div class="image-grid">
+    <div
+      class="image-wrapper"
+      *ngFor="let image of images; let i = index"
+      (mouseenter)="setHovered(i)"
+      (mouseleave)="setHovered(null)"
+    >
+      <img
+        [src]="hoveredIndex === i ? image.hover : image.default"
+        alt="Category Image"
+      />
+    </div>
+  </div>
+</div>
