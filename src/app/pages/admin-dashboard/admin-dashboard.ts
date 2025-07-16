@@ -53,11 +53,11 @@ export class AdminDashboard {
     },
   ];
 }
-const myTheme = themeQuartz.withParams({
-  backgroundColor: 'rgb(249, 245, 227)',
-  foregroundColor: 'rgb(126, 46, 132)',
-  headerTextColor: 'rgb(204, 245, 172)',
-  headerBackgroundColor: 'rgb(209, 64, 129)',
-  oddRowBackgroundColor: 'rgb(0, 0, 0, 0.03)',
-  headerColumnResizeHandleColor: 'rgb(126, 46, 132)',
-});
+// const myTheme = themeQuartz.withParams({
+//   backgroundColor: 'rgb(249, 245, 227)',
+//   foregroundColor: 'rgb(126, 46, 132)',
+//   headerTextColor: 'rgb(204, 245, 172)',
+//   headerBackgroundColor: 'rgb(209, 64, 129)',
+//   oddRowBackgroundColor: 'rgb(0, 0, 0, 0.03)',
+//   headerColumnResizeHandleColor: 'rgb(126, 46, 132)',
+// });

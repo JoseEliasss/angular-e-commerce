@@ -9,11 +9,19 @@ import { ICellRendererParams } from 'ag-grid-community';
   styleUrl: './delete-button-dashboard.scss',
 })
 export class DeleteButtonDashboard implements ICellRendererAngularComp {
-  rowId: string = '';
-  agInit(params: ICellRendererParams<any, any, any>): void {
-    console.log(params);
+  private params!: ICellRendererParams;
+
+  agInit(params: ICellRendererParams): void {
+    this.params = params;
   }
-  refresh(params: ICellRendererParams<any, any, any>): boolean {
-    throw new Error('Method not implemented.');
+
+  refresh(params: ICellRendererParams): boolean {
+    this.params = params;
+    return true;
+  }
+
+  onDelete(): void {
+    const rowNode = this.params.node;
+    this.params.api.applyTransaction({ remove: [rowNode.data] });
   }
 }
