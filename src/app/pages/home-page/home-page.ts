@@ -4,23 +4,12 @@ import { Header } from '../../core/header/header';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Countercomponent } from '../countercomponent/countercomponent';
+import { Products } from '../products/products';
 
 @Component({
   selector: 'app-home-page',
-  imports: [Header, Footer, CommonModule, Countercomponent],
+  imports: [Header, Footer, CommonModule, Countercomponent, Products],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
-export class HomePage implements OnInit {
-  products: any[] = [];
-
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.http
-      .get<any[]>('https://fakestoreapi.com/products')
-      .subscribe((data) => {
-        this.products = data;
-      });
-  }
-}
+export class HomePage {}
