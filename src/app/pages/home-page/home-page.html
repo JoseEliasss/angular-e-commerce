@@ -1,5 +1,50 @@
 <app-header></app-header>
 
-<p>homepage</p>
+<div class="container">
+  <div class="firstSection">
+    <div class="sidelinks">
+      <a href="">Woman's Fashion</a>
+      <a href="">Men's Fashion</a>
+      <a href="">Electronics</a>
+      <a href="">Home & LifeStyle</a>
+      <a href="">Medicine</a>
+      <a href=""> Sports & Outdoor</a>
+      <a href=""> Baby's & Toys</a>
+      <a href="">Groceries & Pets</a>
+      <a href="">Health & Beauty</a>
+    </div>
+    <img
+      src="/assets/10percentvoucher.png"
+      alt="homepage voucher"
+      width="892px"
+      height="344px"
+    />
+  </div>
+  <div class="secondSection">
+    <span class="todays">
+      <span></span>
+      <p>Today's</p></span
+    >
 
+    <span class="flashSales">
+      <h2>Flash Sales</h2>
+      <span class="days">
+        <small>Days |</small>
+        <small> Hours |</small>
+        <small> Mins |</small>
+        <small> Seconds</small>
+        <h3>
+          <app-countercomponent [seconds]="343196"></app-countercomponent>
+        </h3>
+      </span>
+    </span>
+  </div>
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of products">
+      <img [src]="product.image" alt="{{ product.title }}" />
+      <h3>{{ product.title }}</h3>
+      <p>${{ product.price }}</p>
+    </div>
+  </div>
+</div>
 <app-footer></app-footer>
