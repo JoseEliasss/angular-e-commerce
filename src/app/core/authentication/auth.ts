@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Auth {
-  private apiUrl = 'https://your-api.com/auth/login'; // 🔁 Replace with real URL
+  private apiUrl = 'https://your-api.com/auth/login';
 
   constructor(private http: HttpClient, private router: Router) {}
 

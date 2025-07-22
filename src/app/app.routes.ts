@@ -10,15 +10,16 @@ import { AdminDashboard } from './pages/admin-dashboard/admin-dashboard';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
-  { path: 'signup', component: SignUp },
+  // { path: 'signup', component: SignUp },
   { path: 'login', component: Login },
   { path: 'contact', component: Contact },
   { path: 'about', component: About },
   { path: 'admindashboard', component: AdminDashboard },
-  // {
-  //   path: 'about',
-  //   loadComponent: () => import('./pages/about/about').then((m) => m.About),
-  //   canActivate: [canActivateGuard],
-  // },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./pages/sign-up/sign-up').then((m) => m.SignUp),
+    canActivate: [canActivateGuard],
+  },
   { path: '**', component: NotFound },
 ];
