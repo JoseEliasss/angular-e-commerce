@@ -1,38 +1,56 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
-  private apiUrl = 'https://your-api.com/auth/login';
+  private tokenKey = 'access_token';
 
-  constructor(private http: HttpClient, private router: Router) {}
-
-  public handleLogin(
-    credentials: { email: string; password: string },
-    onError: (msg: string) => void
-  ): void {
-    this.http.post<{ token: string }>(this.apiUrl, credentials).subscribe({
-      next: (res) => {
-        this.setToken(res.token);
-        this.router.navigate(['/']);
-      },
-      error: (err) => {
-        console.error(err);
-        onError('Login failed. Please try again.');
-      },
-    });
-  }
+  constructor(private http: HttpClient) {}
 
   setToken(token: string): void {
-    localStorage.setItem('accessToken', token);
+    localStorage.setItem(this.tokenKey, token);
+    console.log('Token set:', token);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('accessToken');
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  clearToken(): void {
+    localStorage.removeItem(this.tokenKey);
+  }
+
+  login(credentials: { Username: string; Password: string }): Observable<any> {
+    return this.http
+      .post<any>('http://192.168.7.156:5005/api/User/Login()', credentials)
+      .pipe(
+        tap((response) => {
+          if (response && response.token) {
+            this.setToken(response.token);
+          }
+        })
+      );
+  }
+
+  signup(data: {
+    Firstname: string;
+    Lastname: string;
+    Username: string;
+    Password: string;
+    RoleName: string;
+  }): Observable<any> {
+    return this.http
+      .post<any>('http://192.168.7.156:5005/api/User/Signup()', data)
+      .pipe(
+        tap((response) => {
+          if (response && response.token) {
+            this.setToken(response.token);
+          }
+        })
+      );
   }
 
   isLoggedIn(): boolean {
@@ -40,7 +58,6 @@ export class Auth {
   }
 
   logout(): void {
-    localStorage.removeItem('accessToken');
-    this.router.navigate(['/login']);
+    this.clearToken();
   }
 }
