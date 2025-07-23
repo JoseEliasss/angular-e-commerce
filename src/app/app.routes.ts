@@ -9,8 +9,14 @@ import { Contact } from './pages/contact/contact';
 import { AdminDashboard } from './pages/admin-dashboard/admin-dashboard';
 import { AllProducts } from './pages/all-products/all-products';
 
+import { ItemCard } from './pages/item-card/item-card';
+
 export const routes: Routes = [
-  { path: '', component: HomePage },
+  {
+    path: '',
+    component: HomePage,
+  },
+  { path: 'itemcard/:id', component: ItemCard },
   // { path: 'login', component: Login },
   { path: 'contact', component: Contact },
   { path: 'about', component: About },

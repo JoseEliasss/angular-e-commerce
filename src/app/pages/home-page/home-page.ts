@@ -6,18 +6,11 @@ import { CommonModule } from '@angular/common';
 import { Countercomponent } from '../countercomponent/countercomponent';
 import { Products } from '../../shared/components/products/products';
 import { Categories } from '../../shared/components/products/categories/categories';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
-  imports: [
-    Header,
-    Footer,
-    CommonModule,
-    Countercomponent,
-    Products,
-    Categories,
-  ],
+  imports: [Header, Footer, CommonModule, Countercomponent, Categories],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
@@ -40,5 +33,8 @@ export class HomePage implements OnInit {
   }
   gotToAllProducts() {
     this.router.navigate(['/allproducts']);
+  }
+  goToProduct(id: number) {
+    this.router.navigate(['/itemcard', id]);
   }
 }
