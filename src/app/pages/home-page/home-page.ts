@@ -10,7 +10,14 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
-  imports: [Header, Footer, CommonModule, Countercomponent, Categories],
+  imports: [
+    Header,
+    Footer,
+    CommonModule,
+    Countercomponent,
+    Categories,
+    Products,
+  ],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
@@ -33,8 +40,5 @@ export class HomePage implements OnInit {
   }
   gotToAllProducts() {
     this.router.navigate(['/allproducts']);
-  }
-  goToProduct(id: number) {
-    this.router.navigate(['/itemcard', id]);
   }
 }

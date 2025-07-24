@@ -39,19 +39,7 @@
       </span>
     </span>
   </div>
-  <div class="product-grid" id="electronics">
-    @for (product of products; track product.id) { @if (product.category ===
-    'electronics') {
-    <div class="product-card" (click)="goToProduct(product.id)">
-      <img [src]="product.image" alt="{{ product.title }}" />
-      <h3>{{ product.title }}</h3>
-      <span class="pprice">
-        <p>${{ product.price }}</p>
-        <s>$160</s>
-      </span>
-    </div>
-    } }
-  </div>
+  <app-products [desc]="'electronics'" id="electronics"></app-products>
   <span class="btn">
     <button class="allproducts" (click)="gotToAllProducts()">
       View All Products
@@ -81,19 +69,8 @@
     <span class="flashSales">
       <h2>women's clothing</h2>
     </span>
-    <div class="product-grid">
-      @for (product of products; track product.id) { @if (product.category ===
-      "women's clothing") {
-      <div class="product-card">
-        <img [src]="product.image" alt="{{ product.title }}" />
-        <h3>{{ product.title }}</h3>
-        <span class="pprice">
-          <p>${{ product.price }}</p>
-          <s>$160</s>
-        </span>
-      </div>
-      } }
-    </div>
+
+    <app-products [desc]="'women\'s clothing'"></app-products>
   </div>
   <img
     src="/assets/enhanceYourMusic.png"
@@ -109,19 +86,7 @@
     <span class="flashSales">
       <h2>men's clothing</h2>
     </span>
-    <div class="product-grid">
-      @for (product of products; track product.id) { @if (product.category ===
-      "men's clothing") {
-      <div class="product-card">
-        <img [src]="product.image" alt="{{ product.title }}" />
-        <h3>{{ product.title }}</h3>
-        <span class="pprice">
-          <p>${{ product.price }}</p>
-          <s>$160</s>
-        </span>
-      </div>
-      } }
-    </div>
+    <app-products [desc]="'men\'s clothing'"></app-products>
   </div>
   <span class="btn">
     <button class="allproducts" (click)="gotToAllProducts()">
