@@ -6,10 +6,12 @@
       (mouseenter)="setHovered(i)"
       (mouseleave)="setHovered(null)"
     >
-      <img
-        [src]="hoveredIndex === i ? image.hover : image.default"
-        alt="Category Image"
-      />
+      <a href="#electronics">
+        <img
+          [src]="hoveredIndex === i ? image.hover : image.default"
+          alt="Category Image"
+        />
+      </a>
     </div>
   </div>
 </div>

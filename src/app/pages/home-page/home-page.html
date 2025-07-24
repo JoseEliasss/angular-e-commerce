@@ -39,8 +39,25 @@
       </span>
     </span>
   </div>
+  <div class="product-grid" id="electronics">
+    @for (product of products; track product.id) { @if (product.category ===
+    'electronics') {
+    <div class="product-card" (click)="goToProduct(product.id)">
+      <img [src]="product.image" alt="{{ product.title }}" />
+      <h3>{{ product.title }}</h3>
+      <span class="pprice">
+        <p>${{ product.price }}</p>
+        <s>$160</s>
+      </span>
+    </div>
+    } }
+  </div>
+  <span class="btn">
+    <button class="allproducts" (click)="gotToAllProducts()">
+      View All Products
+    </button></span
+  >
 
-  <app-products></app-products>
   <div class="secondSection">
     <div class="secondSection">
       <span class="todays">
@@ -55,5 +72,90 @@
       </div>
     </div>
   </div>
-  <app-footer></app-footer>
+  <div class="secondSection">
+    <span class="todays">
+      <span></span>
+      <p>Our Products</p></span
+    >
+
+    <span class="flashSales">
+      <h2>women's clothing</h2>
+    </span>
+    <div class="product-grid">
+      @for (product of products; track product.id) { @if (product.category ===
+      "women's clothing") {
+      <div class="product-card">
+        <img [src]="product.image" alt="{{ product.title }}" />
+        <h3>{{ product.title }}</h3>
+        <span class="pprice">
+          <p>${{ product.price }}</p>
+          <s>$160</s>
+        </span>
+      </div>
+      } }
+    </div>
+  </div>
+  <img
+    src="/assets/enhanceYourMusic.png"
+    alt="enhanceyourmusic"
+    class="enhanceyourmusic"
+  />
+  <div class="secondSection">
+    <span class="todays">
+      <span></span>
+      <p>Our Products</p></span
+    >
+
+    <span class="flashSales">
+      <h2>men's clothing</h2>
+    </span>
+    <div class="product-grid">
+      @for (product of products; track product.id) { @if (product.category ===
+      "men's clothing") {
+      <div class="product-card">
+        <img [src]="product.image" alt="{{ product.title }}" />
+        <h3>{{ product.title }}</h3>
+        <span class="pprice">
+          <p>${{ product.price }}</p>
+          <s>$160</s>
+        </span>
+      </div>
+      } }
+    </div>
+  </div>
+  <span class="btn">
+    <button class="allproducts" (click)="gotToAllProducts()">
+      View All Products
+    </button></span
+  >
+  <span class="todays">
+    <span></span>
+    <p>Our Products</p></span
+  >
+  <span class="flashSales">
+    <h2>New Arrival</h2>
+  </span>
+  <div class="imagesSection">
+    <div class="psSection">
+      <a href=""><img src="/assets/ps5.png" alt="ps5" /></a>
+    </div>
+    <div class="othersSection">
+      <a href="">
+        <img src="/assets/womensCollection.png" alt="womenscollection" />
+      </a>
+      <div class="doublepics">
+        <img src="/assets/speakers.png" alt="speakers" />
+        <img src="/assets/perfume.png" alt="perfume" />
+      </div>
+    </div>
+  </div>
+  <div class="services">
+    <div class="fourthSection">
+      <span *ngFor="let s of services">
+        <img [src]="s.image" alt="services" />
+      </span>
+    </div>
+  </div>
 </div>
+
+<app-footer></app-footer>

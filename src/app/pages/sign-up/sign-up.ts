@@ -9,16 +9,22 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { Auth } from '../../core/authentication/auth';
 @Component({
   selector: 'app-sign-up',
+  standalone: true,
   imports: [Header, Footer, RouterLink, ReactiveFormsModule, CommonModule],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.scss',
 })
 export class SignUp {
   signupForm: FormGroup;
-  constructor(private router: Router, private formBuilder: FormBuilder) {
+
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private authService: Auth
+  ) {
     this.signupForm = this.formBuilder.group({
       name: [
         '',
@@ -45,7 +51,29 @@ export class SignUp {
 
   createAcc() {
     if (this.signupForm.valid) {
-      this.router.navigate(['/']);
+      const fullName = this.signupForm.value.name.trim().split(' ');
+      const firstName = fullName[0];
+      const lastName = fullName.slice(1).join(' ') || ' ';
+
+      const signupData = {
+        Firstname: firstName,
+        Lastname: lastName,
+        Username: this.signupForm.value.email, // ✅ Correct field name
+        Password: this.signupForm.value.password,
+        RoleName: 'User',
+      };
+
+      console.log('Sending signup data:', signupData);
+
+      this.authService.signup(signupData).subscribe({
+        next: (response) => {
+          console.log('Signup successful!', response);
+          this.router.navigate(['/login']);
+        },
+        error: (error) => {
+          console.error('Signup error', error.error || error);
+        },
+      });
     } else {
       this.signupForm.markAllAsTouched();
     }
