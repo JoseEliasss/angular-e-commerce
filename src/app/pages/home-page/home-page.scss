@@ -240,7 +240,9 @@
 }
 .psSection,
 .womensCollection,
-.speakers {
+.speakers,
+.perfume,
+.voucher {
   position: relative;
 
   span {
@@ -256,4 +258,8 @@
       text-decoration: underline;
     }
   }
+}
+.voucher span {
+  left: 10%;
+  bottom: 10%;
 }
