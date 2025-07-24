@@ -238,3 +238,20 @@
   justify-content: center;
   align-items: center;
 }
+.psSection {
+  position: relative;
+
+  span {
+    position: absolute;
+    left: 5%;
+    bottom: 5%;
+    color: white;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
