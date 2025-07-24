@@ -263,3 +263,19 @@
   left: 10%;
   bottom: 10%;
 }
+.enhance {
+  position: relative;
+  a {
+    position: absolute;
+    text-decoration: none;
+    border-radius: 5px;
+    border-width: 0px;
+    cursor: pointer;
+    bottom: 20%;
+    left: 5%;
+    font-size: large;
+    background-color: #00ff66;
+    padding: 1em 2em;
+    color: white;
+  }
+}
