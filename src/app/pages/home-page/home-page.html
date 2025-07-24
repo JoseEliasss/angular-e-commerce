@@ -26,7 +26,7 @@
       <p>Today's</p></span
     >
 
-    <span class="flashSales">
+    <span class="flashSales" id="electronics">
       <h2>Flash Sales</h2>
       <span class="days">
         <small>Days |</small>
@@ -39,7 +39,7 @@
       </span>
     </span>
   </div>
-  <app-products [desc]="'electronics'" id="electronics"></app-products>
+  <app-products [desc]="'electronics'"></app-products>
   <span class="btn">
     <button class="allproducts" (click)="gotToAllProducts()">
       View All Products
@@ -66,7 +66,7 @@
       <p>Our Products</p></span
     >
 
-    <span class="flashSales">
+    <span class="flashSales" id="women">
       <h2>women's clothing</h2>
     </span>
 
@@ -112,9 +112,16 @@
       </span>
     </div>
     <div class="othersSection">
-      <a href="">
-        <img src="/assets/womensCollection.png" alt="womenscollection" />
-      </a>
+      <div class="womensCollection">
+        <img src="/assets/womenssection.png" alt="womenscollection" />
+        <span>
+          <h2>Women's Collections</h2>
+          <br />
+          <p>Featured woman collections that give you another vibe</p>
+          <br />
+          <a href="#women">Shop Now</a>
+        </span>
+      </div>
       <div class="doublepics">
         <img src="/assets/speakers.png" alt="speakers" />
         <img src="/assets/perfume.png" alt="perfume" />
