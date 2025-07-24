@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -9,9 +10,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './products.scss',
 })
 export class Products implements OnInit {
-  products: any[] = [];
+  @Input() products: any[] = [];
+  @Input() desc: string = '';
+  @Input() layout: 'horizontal' | 'vertical' = 'horizontal';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.http
@@ -19,5 +22,8 @@ export class Products implements OnInit {
       .subscribe((data) => {
         this.products = data;
       });
+  }
+  goToProduct(id: number) {
+    this.router.navigate(['/itemcard', id]);
   }
 }

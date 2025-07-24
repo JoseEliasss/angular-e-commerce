@@ -1,13 +1,13 @@
-<div class="product-grid">
-  @for (product of products; track product.id){
-  <div class="product-card">
+<div [ngClass]="layout === 'horizontal' ? 'product-grid' : 'product-all'">
+  @for (product of products; track product.id) { @if (product.category === desc
+  || desc==='all') {
+  <div class="product-card" (click)="goToProduct(product.id)">
     <img [src]="product.image" alt="{{ product.title }}" />
     <h3>{{ product.title }}</h3>
     <span class="pprice">
       <p>${{ product.price }}</p>
       <s>$160</s>
     </span>
-    <p>{{ product.category }}</p>
   </div>
-  }
+  } }
 </div>
