@@ -7,6 +7,7 @@ import { Countercomponent } from '../countercomponent/countercomponent';
 import { Products } from '../../shared/components/products/products';
 import { Categories } from '../../shared/components/products/categories/categories';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../core/authentication/auth';
 
 @Component({
   selector: 'app-home-page',
@@ -29,7 +30,11 @@ export class HomePage implements OnInit {
   ];
   products: any[] = [];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.http
@@ -40,5 +45,9 @@ export class HomePage implements OnInit {
   }
   gotToAllProducts() {
     this.router.navigate(['/allproducts']);
+  }
+  logOutAcc() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
