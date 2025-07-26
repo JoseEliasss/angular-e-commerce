@@ -1,15 +1,74 @@
-<div *ngIf="loading">
-  <p>Loading product details...</p>
+@if(loading){
+<p>Loading product details...</p>
+} @else{
+<app-header></app-header>
+<p class="error">{{ error }}</p>
+<div class="container">
+  <div class="product-details">
+    <div class="images">
+      <div class="verticalimages">
+        <img [src]="product.image" alt="productimage" /><img
+          [src]="product.image"
+          alt="productimage"
+        /><img [src]="product.image" alt="productimage" /><img
+          [src]="product.image"
+          alt="productimage"
+        />
+      </div>
+      <div class="biggestimage">
+        <img [src]="product.image" alt="productimage" />
+      </div>
+    </div>
+    <div class="details">
+      <h2>{{ product.title }}</h2>
+      <h3>${{ product.price }}</h3>
+      <p>{{ product.description }}</p>
+      <form class="form" (ngSubmit)="buyNow()">
+        <span>
+          <label for="color">Color: </label>
+          <input type="checkbox" id="red" name="red" value="red" />
+          <input type="checkbox" id="white" name="white" value="white" />
+        </span>
+        <span>
+          <label for="size">Size: </label>
+          <input
+            type="checkbox"
+            id="XS"
+            name="XS"
+            value="XS"
+            placeholder="XS"
+          />
+          <input type="checkbox" id="S" name="S" value="S" />
+          <input type="checkbox" id="M" name="M" value="M" />
+          <input type="checkbox" id="L" name="L" value="L" />
+          <input type="checkbox" id="XL" name="XL" value="XL" />
+        </span>
+        <input type="number" />
+      </form>
+      <img src="/assets/freeandFastDeliver.png" alt="freeandFastDeliver" />
+    </div>
+  </div>
+  <span class="todays">
+    <span></span>
+    <p>Related Item</p></span
+  >
+  <div class="product-grid" id="electronics">
+    @for (p of products; track p.id) { @if (p.category === product.category) {
+    <div class="product-card" (click)="goToProduct(p.id)">
+      <img [src]="p.image" alt="{{ product.title }}" />
+      <h3>{{ p.title }}</h3>
+      <span class="pprice">
+        <p>${{ p.price }}</p>
+        <s>$160</s>
+      </span>
+    </div>
+    } }
+  </div>
 </div>
-
-<div *ngIf="error">
-  <p class="error">{{ error }}</p>
-</div>
-
-<div *ngIf="!loading && product" class="product-details">
-  <img [src]="product.image" alt="{{ product.title }}" class="product-image" />
+<app-footer></app-footer>
+}
+<!-- <img [src]="product.image" alt="{{ product.title }}" class="product-image" />
   <h2>{{ product.title }}</h2>
   <p class="price"><strong>Price:</strong> ${{ product.price }}</p>
   <p><strong>Category:</strong> {{ product.category }}</p>
-  <p><strong>Description:</strong> {{ product.description }}</p>
-</div>
+  <p><strong>Description:</strong> {{ product.description }}</p> -->

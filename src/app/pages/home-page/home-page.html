@@ -13,12 +13,17 @@
       <a href="">Groceries & Pets</a>
       <a href="">Health & Beauty</a>
     </div>
-    <img
-      src="/assets/10percentvoucher.png"
-      alt="homepage voucher"
-      width="892px"
-      height="344px"
-    />
+    <div class="voucher">
+      <img
+        src="/assets/10percentvoucher.png"
+        alt="homepage voucher"
+        width="892px"
+        height="344px"
+      />
+      <span>
+        <a href="#electronics">Shop Now</a>
+      </span>
+    </div>
   </div>
   <div class="secondSection">
     <span class="todays">
@@ -26,7 +31,7 @@
       <p>Today's</p></span
     >
 
-    <span class="flashSales">
+    <span class="flashSales" id="electronics">
       <h2>Flash Sales</h2>
       <span class="days">
         <small>Days |</small>
@@ -39,19 +44,7 @@
       </span>
     </span>
   </div>
-  <div class="product-grid" id="electronics">
-    @for (product of products; track product.id) { @if (product.category ===
-    'electronics') {
-    <div class="product-card" (click)="goToProduct(product.id)">
-      <img [src]="product.image" alt="{{ product.title }}" />
-      <h3>{{ product.title }}</h3>
-      <span class="pprice">
-        <p>${{ product.price }}</p>
-        <s>$160</s>
-      </span>
-    </div>
-    } }
-  </div>
+  <app-products [desc]="'electronics'"></app-products>
   <span class="btn">
     <button class="allproducts" (click)="gotToAllProducts()">
       View All Products
@@ -72,7 +65,7 @@
       </div>
     </div>
   </div>
-  <div class="secondSection">
+  <div class="secondSection" id="women">
     <span class="todays">
       <span></span>
       <p>Our Products</p></span
@@ -81,26 +74,18 @@
     <span class="flashSales">
       <h2>women's clothing</h2>
     </span>
-    <div class="product-grid">
-      @for (product of products; track product.id) { @if (product.category ===
-      "women's clothing") {
-      <div class="product-card">
-        <img [src]="product.image" alt="{{ product.title }}" />
-        <h3>{{ product.title }}</h3>
-        <span class="pprice">
-          <p>${{ product.price }}</p>
-          <s>$160</s>
-        </span>
-      </div>
-      } }
-    </div>
+
+    <app-products [desc]="'women\'s clothing'"></app-products>
   </div>
-  <img
-    src="/assets/enhanceYourMusic.png"
-    alt="enhanceyourmusic"
-    class="enhanceyourmusic"
-  />
-  <div class="secondSection">
+  <div class="enhance">
+    <img
+      src="/assets/enhanceYourMusic.png"
+      alt="enhanceyourmusic"
+      class="enhanceyourmusic"
+    />
+    <a href="#electronics">Shop Now</a>
+  </div>
+  <div class="secondSection" id="men">
     <span class="todays">
       <span></span>
       <p>Our Products</p></span
@@ -109,19 +94,7 @@
     <span class="flashSales">
       <h2>men's clothing</h2>
     </span>
-    <div class="product-grid">
-      @for (product of products; track product.id) { @if (product.category ===
-      "men's clothing") {
-      <div class="product-card">
-        <img [src]="product.image" alt="{{ product.title }}" />
-        <h3>{{ product.title }}</h3>
-        <span class="pprice">
-          <p>${{ product.price }}</p>
-          <s>$160</s>
-        </span>
-      </div>
-      } }
-    </div>
+    <app-products [desc]="'men\'s clothing'"></app-products>
   </div>
   <span class="btn">
     <button class="allproducts" (click)="gotToAllProducts()">
@@ -137,15 +110,47 @@
   </span>
   <div class="imagesSection">
     <div class="psSection">
-      <a href=""><img src="/assets/ps5.png" alt="ps5" /></a>
+      <img src="/assets/PS.png" alt="psimage" />
+      <span>
+        <h3>PlayStation 5</h3>
+        <br />
+        <p>Black and white version of the ps5 coming out on sale</p>
+        <br />
+        <a href="#electronics">Shop Now</a>
+      </span>
     </div>
     <div class="othersSection">
-      <a href="">
-        <img src="/assets/womensCollection.png" alt="womenscollection" />
-      </a>
+      <div class="womensCollection">
+        <img src="/assets/womenssection.png" alt="womenscollection" />
+        <span>
+          <h2>Women's Collections</h2>
+          <br />
+          <p>Featured woman collections that give you another vibe</p>
+          <br />
+          <a href="#women">Shop Now</a>
+        </span>
+      </div>
       <div class="doublepics">
-        <img src="/assets/speakers.png" alt="speakers" />
-        <img src="/assets/perfume.png" alt="perfume" />
+        <div class="speakers">
+          <img src="/assets/speakers.png" alt="speakers" />
+          <span>
+            <h2>Speakers</h2>
+            <br />
+            <p>Amazon wireless speakers</p>
+            <br />
+            <a href="#electronics">Shop Now</a>
+          </span>
+        </div>
+        <div class="perfume">
+          <img src="/assets/perfume.png" alt="perfume" />
+          <span>
+            <h2>Perfume</h2>
+            <br />
+            <p>Gucci Intense oud EDP</p>
+            <br />
+            <a href="#men">Shop Now</a>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -157,5 +162,5 @@
     </div>
   </div>
 </div>
-
+<button (click)="logOutAcc()">logout</button>
 <app-footer></app-footer>

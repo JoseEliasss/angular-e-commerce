@@ -211,6 +211,7 @@
   margin-top: 5em;
   display: flex;
   flex-direction: row;
+
   gap: 2em;
 }
 .othersSection {
@@ -237,4 +238,45 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+.psSection,
+.womensCollection,
+.speakers,
+.perfume,
+.voucher {
+  position: relative;
+
+  span {
+    position: absolute;
+    left: 5%;
+    bottom: 5%;
+    color: white;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.voucher span {
+  left: 10%;
+  bottom: 10%;
+}
+.enhance {
+  position: relative;
+  a {
+    position: absolute;
+    text-decoration: none;
+    border-radius: 5px;
+    border-width: 0px;
+    cursor: pointer;
+    bottom: 20%;
+    left: 5%;
+    font-size: large;
+    background-color: #00ff66;
+    padding: 1em 2em;
+    color: white;
+  }
 }

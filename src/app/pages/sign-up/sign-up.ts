@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Auth } from '../../core/authentication/auth';
+import { AuthService } from '../../core/authentication/auth';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -23,7 +23,7 @@ export class SignUp {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private authService: Auth
+    private authService: AuthService
   ) {
     this.signupForm = this.formBuilder.group({
       name: [
@@ -58,9 +58,9 @@ export class SignUp {
       const signupData = {
         Firstname: firstName,
         Lastname: lastName,
-        Username: this.signupForm.value.email, // ✅ Correct field name
+        Email: this.signupForm.value.email,
         Password: this.signupForm.value.password,
-        RoleName: 'User',
+        // RoleName: 'User',
       };
 
       console.log('Sending signup data:', signupData);
