@@ -4,35 +4,56 @@
       Summer Sale For All Swim Suits And Free Delivery-OFF 50%!
       <a routerLink="/">ShopNow</a>
     </span>
-    <select id="language" class="language">
-      <option value="english">English</option>
-      <option value="arabic">Arabic</option>
-      <option value="french">French</option>
-    </select>
   </nav>
-  <header>
-    <h1>Exclusive</h1>
-    <span class="links">
-      <a routerLink="">Home</a>
-      <a routerLink="/contact">Contact</a>
-      <a routerLink="/about">About</a>
-      <a routerLink="/signup">Sign Up</a>
-    </span>
-    <span class="search">
-      <span class="searchbar">
-        <input type="text" placeholder="what are you looking for?" />
-        <img src="/assets/search.png" alt="search" height="25px" width="25px" />
-      </span>
-      <img
-        src="/assets/favorite.png"
-        alt="favicon"
-        height="25px"
-        width="25px"
-      />
 
-      <img src="/assets/cart.png" alt="cart" height="25px" width="25px" />
-      <img src="/assets/profile.png" alt="profile" height="25px" width="25px" />
-    </span>
+  <header>
+    <div class="all">
+      <h1>Exclusive</h1>
+
+      <button class="menu-toggle" (click)="toggleSidebar()">☰</button>
+
+      <span class="links">
+        <a routerLink="">Home</a>
+        <a routerLink="/contact">Contact</a>
+        <a routerLink="/about">About</a>
+        <a routerLink="/signup">Sign Up</a>
+      </span>
+
+      <span class="search">
+        <span class="searchbar">
+          <input type="text" placeholder="what are you looking for?" />
+          <img
+            src="/assets/search.png"
+            alt="search"
+            height="25px"
+            width="25px"
+          />
+        </span>
+        <img
+          src="/assets/favorite.png"
+          alt="favicon"
+          height="25px"
+          width="25px"
+        />
+        <img src="/assets/cart.png" alt="cart" height="25px" width="25px" />
+        <img
+          src="/assets/profile.png"
+          alt="profile"
+          height="25px"
+          width="25px"
+        />
+      </span>
+
+      <div class="sidebar" [class.open]="sidebarOpen">
+        <nav class="sidebar-links">
+          <a routerLink="" (click)="closeSidebar()">Home</a>
+          <a routerLink="/contact" (click)="closeSidebar()">Contact</a>
+          <a routerLink="/about" (click)="closeSidebar()">About</a>
+          <a routerLink="/signup" (click)="closeSidebar()">Sign Up</a>
+        </nav>
+      </div>
+    </div>
   </header>
+
   <hr />
 </div>

@@ -85,3 +85,22 @@
     font-weight: 500;
   }
 }
+@media (max-width: 768px) {
+  .form {
+    padding-left: 1em;
+    h1 {
+      text-align: center;
+    }
+    p {
+      padding-left: 1em;
+    }
+  }
+  .signup {
+    img {
+      display: none;
+    }
+  }
+  .search {
+    display: none;
+  }
+}
