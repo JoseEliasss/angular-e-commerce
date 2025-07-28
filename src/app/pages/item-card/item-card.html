@@ -21,29 +21,55 @@
     </div>
     <div class="details">
       <h2>{{ product.title }}</h2>
-      <h3>${{ product.price }}</h3>
+      <h2>${{ product.price }}</h2>
       <p>{{ product.description }}</p>
       <form class="form" (ngSubmit)="buyNow()">
-        <span>
-          <label for="color">Color: </label>
-          <input type="checkbox" id="red" name="red" value="red" />
-          <input type="checkbox" id="white" name="white" value="white" />
+        <span class="color-selector">
+          <h3>Color:</h3>
+          <label>
+            <input type="radio" name="color" value="red" />
+            <span class="color-circle red"></span>
+          </label>
+          <label>
+            <input type="radio" name="color" value="white" />
+            <span class="color-circle white"></span>
+          </label>
         </span>
-        <span>
-          <label for="size">Size: </label>
-          <input
-            type="checkbox"
-            id="XS"
-            name="XS"
-            value="XS"
-            placeholder="XS"
-          />
-          <input type="checkbox" id="S" name="S" value="S" />
-          <input type="checkbox" id="M" name="M" value="M" />
-          <input type="checkbox" id="L" name="L" value="L" />
-          <input type="checkbox" id="XL" name="XL" value="XL" />
+
+        <span class="size-selector">
+          <h3>Size:</h3>
+          <label>
+            <input type="radio" name="size" value="XS" /> <span>XS</span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="S" /> <span>S</span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="M" /> <span>M</span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="L" /> <span>L</span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="XL" /> <span>XL</span>
+          </label>
         </span>
-        <input type="number" />
+        <div class="quantityAndCart">
+          <div class="quantity">
+            <button type="button" class="minus" (click)="minusOne()">-</button>
+            <b>{{ quantity }}</b>
+            <button type="button" class="plus" (click)="plusOne()">+</button>
+          </div>
+          <span class="favAndCart">
+            <button>Add to Cart</button>
+            <img
+              src="/assets/favorite.png"
+              alt="favicon"
+              width="30px"
+              height="30px"
+            />
+          </span>
+        </div>
       </form>
       <img src="/assets/freeandFastDeliver.png" alt="freeandFastDeliver" />
     </div>
