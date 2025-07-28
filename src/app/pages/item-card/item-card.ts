@@ -13,10 +13,12 @@ import { Footer } from '../../shared/footer/footer';
   styleUrls: ['./item-card.scss'],
 })
 export class ItemCard implements OnInit {
+  quantity = 1;
   product: any = null;
   loading = true;
   error = '';
   products: any[] | undefined;
+  size = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -60,5 +62,11 @@ export class ItemCard implements OnInit {
       .subscribe((data) => {
         this.product = data;
       });
+  }
+  minusOne() {
+    this.quantity <= 1 ? (this.quantity = 1) : (this.quantity -= 1);
+  }
+  plusOne() {
+    this.quantity += 1;
   }
 }
