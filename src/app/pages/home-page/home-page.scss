@@ -2,12 +2,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 .container {
-  margin-left: 5em;
-  margin-right: 5em;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 .firstSection {
+  width: 100%;
   margin-bottom: 5em;
   display: flex;
   flex-direction: row;
@@ -15,6 +17,10 @@
     padding-top: 2em;
     padding-left: 2em;
   }
+}
+.vouchcer img {
+  width: 100%;
+  text-align: center;
 }
 .sidelinks {
   padding-top: 2em;
@@ -202,16 +208,13 @@
   border-width: 0px;
   cursor: pointer;
 }
-.enhanceyourmusic {
-  margin-top: 5em;
-  margin-bottom: 5em;
-  width: 100%;
-}
+
 .imagesSection {
   margin-top: 5em;
   display: flex;
   flex-direction: row;
-
+  justify-content: center;
+  align-items: center;
   gap: 2em;
 }
 .othersSection {
@@ -232,6 +235,14 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 5em;
+  span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
 }
 .services {
   display: flex;
@@ -265,18 +276,66 @@
   bottom: 10%;
 }
 .enhance {
-  position: relative;
+  span {
+    position: relative;
+  }
+  .enhanceyourmusic {
+    margin-top: 5em;
+    margin-bottom: 5em;
+    width: 100%;
+    display: block;
+  }
   a {
     position: absolute;
     text-decoration: none;
     border-radius: 5px;
     border-width: 0px;
     cursor: pointer;
-    bottom: 20%;
+    bottom: 10%;
     left: 5%;
     font-size: large;
-    background-color: #00ff66;
-    padding: 1em 2em;
+    background-color: #db4444;
+    width: 12%;
+    height: 7%;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .firstSection {
+    display: none;
+  }
+  .todays {
+    margin-top: 5em;
+  }
+  .sidelinks {
+    display: none;
+  }
+  .imagesSection {
+    display: none;
+  }
+  .fourthSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      padding-bottom: 2em;
+      padding-top: 2em;
+    }
+  }
+  .services {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .enhance {
+    display: none;
   }
 }
