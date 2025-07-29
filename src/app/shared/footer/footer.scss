@@ -1,37 +1,63 @@
 footer {
-  height: 35vh;
+  width: 100%;
   background-color: black;
   color: white;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
-
-  padding-left: 2em;
-  padding-right: 2em;
-  padding-top: 2em;
-
+  align-items: stretch; /* stretches all sections to equal height */
+  padding: 2em;
   margin-top: 5em;
-
-  h2 {
-    padding-bottom: 1em;
-  }
+  gap: 1em; /* optional spacing between blocks */
 }
+
 .sections {
-  color: white;
-  line-height: 2em;
+  flex: 1 1 200px;
   display: flex;
   flex-direction: column;
-  justify-content: baseline;
-  a {
-    color: white;
-    text-decoration: none;
+  justify-content: flex-start;
+  line-height: 2em;
+  color: white;
+  min-height: 100%; /* ensures equal height */
+  background-color: transparent;
+}
+
+.sections a {
+  color: white;
+  text-decoration: none;
+}
+
+.sections input {
+  background-color: black;
+  color: aliceblue;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 6px;
+  margin-top: 0.5em;
+  width: 100%;
+  max-width: 250px;
+}
+
+.downloads img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5em;
+    padding: 1em;
   }
-  input {
-    background-color: black;
-    color: aliceblue;
-    border-color: white;
-    border-width: 3px;
-    border-radius: 5%;
-    padding: 6px;
+
+  .sections {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .sections input {
+    width: 100%;
   }
 }
