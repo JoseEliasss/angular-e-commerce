@@ -60,7 +60,7 @@ export class SignUp {
         Lastname: lastName,
         Email: this.signupForm.value.email,
         Password: this.signupForm.value.password,
-        // RoleName: 'User',
+        RoleName: 'User',
       };
 
       console.log('Sending signup data:', signupData);
