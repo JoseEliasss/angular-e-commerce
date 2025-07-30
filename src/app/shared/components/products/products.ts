@@ -13,7 +13,6 @@ export class Products implements OnInit {
   @Input() products: any[] = [];
   @Input() desc: string = '';
   @Input() layout: 'horizontal' | 'vertical' = 'horizontal';
-
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {

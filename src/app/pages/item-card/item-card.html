@@ -23,7 +23,7 @@
       <h2>{{ product.title }}</h2>
       <h2>${{ product.price }}</h2>
       <p>{{ product.description }}</p>
-      <form class="form" (ngSubmit)="buyNow()">
+      <div class="form">
         <span class="color-selector">
           <h3>Color:</h3>
           <label>
@@ -61,7 +61,10 @@
             <button type="button" class="plus" (click)="plusOne()">+</button>
           </div>
           <span class="favAndCart">
-            <button>Add to Cart</button>
+            <button (click)="addToCart()">Add to Cart</button>
+            @if(added===true){
+            <span>item added to cart!</span>
+            }
             <img
               src="/assets/favorite.png"
               alt="favicon"
@@ -70,7 +73,7 @@
             />
           </span>
         </div>
-      </form>
+      </div>
       <img src="/assets/freeandFastDeliver.png" alt="freeandFastDeliver" />
     </div>
   </div>

@@ -10,6 +10,7 @@ import { AdminDashboard } from './pages/admin-dashboard/admin-dashboard';
 import { AllProducts } from './pages/all-products/all-products';
 
 import { ItemCard } from './pages/item-card/item-card';
+import { Cart } from './pages/cart/cart';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
   { path: 'admindashboard', component: AdminDashboard },
   { path: 'signup', component: SignUp },
   { path: 'allproducts', component: AllProducts },
+  { path: 'cart', component: Cart },
   {
     path: 'signup',
     loadComponent: () =>

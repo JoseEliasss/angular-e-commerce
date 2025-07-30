@@ -4,6 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
+import { CartService } from '../../shared/services/cart-services';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/app.state';
+import { addToCart } from '../../state/book/cart.actions';
 
 @Component({
   selector: 'app-item-card',
@@ -19,11 +23,13 @@ export class ItemCard implements OnInit {
   error = '';
   products: any[] | undefined;
   size = '';
+  added = false;
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -68,5 +74,13 @@ export class ItemCard implements OnInit {
   }
   plusOne() {
     this.quantity += 1;
+  }
+  addToCart() {
+    this.store.dispatch(addToCart({ product: this.product }));
+
+    this.added = true;
+    setTimeout(() => {
+      this.added = false;
+    }, 3000);
   }
 }
