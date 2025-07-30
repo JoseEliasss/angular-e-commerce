@@ -1,67 +1,31 @@
 <app-header></app-header>
 
-<div class="cart-page">
-  <div class="cart-table">
-    <ul class="cart-header">
-      <li>Product</li>
-      <li>Price</li>
-      <li>Quantity</li>
-      <li>Subtotal</li>
-    </ul>
+<div class="cart-container">
+  <h2>Your Cart</h2>
 
-    <div *ngIf="cartItems().length === 0" class="empty">
+  <ng-container *ngIf="cartItems$ | async as items">
+    <div *ngIf="items.length === 0">
       <p>Your cart is empty.</p>
     </div>
 
-    <div *ngIf="cartItems().length > 0">
-      <div *ngFor="let item of cartItems(); let i = index" class="cart-row">
-        <ul>
-          <li class="product">
-            <button class="remove" (click)="removeItem(i)">❌</button>
-            <img [src]="item.image" alt="{{ item.title }}" />
-            <span>{{ item.title }}</span>
-          </li>
-          <li class="price">${{ item.price }}</li>
-          <li class="qty">
-            <button (click)="decreaseItemQty(i)">-</button>
-            <b>{{ item.quantity }}</b>
-            <button (click)="increaseItemQty(i)">+</button>
-          </li>
-          <li class="subtotal">
-            ${{ (item.price * item.quantity).toFixed(2) }}
-          </li>
-        </ul>
+    <div *ngIf="items.length > 0">
+      <div *ngFor="let item of items; let i = index" class="cart-item">
+        <img [src]="item.image" alt="{{ item.title }}" />
+        <div class="details">
+          <h3>{{ item.title }}</h3>
+          <p><strong>Price:</strong> ${{ item.price }}</p>
+          <button (click)="removeItem(i)">Remove</button>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 
-  <div class="cart-actions">
-    <div class="left">
-      <button class="return" (click)="goToHomePage()">Return To Shop</button>
+  <ng-container *ngIf="cartTotal$ | async as total">
+    <div class="cart-summary" *ngIf="total > 0">
+      <h3>Total: ${{ total.toFixed(2) }}</h3>
+      <button (click)="clearCart()">Clear Cart</button>
     </div>
-    <div class="right">
-      <button class="update" (click)="clearCart()">Clear Cart</button>
-    </div>
-  </div>
-
-  <div class="cart-bottom">
-    <div class="summary">
-      <h3>Cart Total</h3>
-      <div class="summary-line">
-        <span>Subtotal:</span>
-        <span>${{ cartTotal().toFixed(2) }}</span>
-      </div>
-      <div class="summary-line">
-        <span>Shipping:</span>
-        <span>Free</span>
-      </div>
-      <div class="summary-line total">
-        <span>Total:</span>
-        <span>${{ cartTotal().toFixed(2) }}</span>
-      </div>
-      <button class="checkout">Proceed to checkout</button>
-    </div>
-  </div>
+  </ng-container>
 </div>
 
 <app-footer></app-footer>

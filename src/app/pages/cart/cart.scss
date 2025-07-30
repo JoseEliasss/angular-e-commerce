@@ -1,126 +1,44 @@
-.cart-page {
-  padding: 4rem 5%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+/* cart.component.scss */
+.cart-container {
+  padding: 2em;
+  max-width: 800px;
+  margin: auto;
 }
 
-.cart-header,
-.cart-row ul {
-  display: grid;
-  grid-template-columns: 40% 20% 20% 20%;
-  align-items: center;
-  gap: 1rem;
-  list-style: none;
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-}
-
-.cart-header {
-  font-weight: bold;
-  background-color: #f9f9f9;
-}
-
-.cart-row img {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
-}
-
-.cart-row .product {
+.cart-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1em;
+
+  img {
+    width: 100px;
+    margin-right: 1em;
+  }
+
+  .details {
+    flex-grow: 1;
+  }
+
+  button {
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+  }
 }
 
-.cart-row input[type="number"] {
-  width: 60px;
-  padding: 0.3rem;
-}
+.cart-summary {
+  margin-top: 2em;
+  text-align: right;
 
-.remove {
-  background: none;
-  border: none;
-  color: red;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.cart-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.cart-actions .return,
-.cart-actions .update {
-  padding: 0.75rem 1.5rem;
-  border: 1px solid #111;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.cart-bottom {
-  display: flex;
-  justify-content: end;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.coupon input {
-  padding: 0.75rem;
-  width: 200px;
-  border: 1px solid #ccc;
-}
-
-.coupon .apply {
-  background-color: #db4444;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  margin-left: 0.5rem;
-}
-
-.summary {
-  border: 1px solid #111;
-  padding: 2rem;
-  width: 300px;
-}
-
-.summary h3 {
-  margin-bottom: 1rem;
-}
-
-.summary-line {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.5rem 0;
-}
-
-.summary-line.total {
-  font-weight: bold;
-  border-top: 1px solid #ccc;
-  padding-top: 1rem;
-  margin-top: 1rem;
-}
-
-.summary .checkout {
-  margin-top: 1rem;
-  background-color: #db4444;
-  color: white;
-  padding: 0.75rem;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-}
-.qty {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  span {
-    text-align: center;
+  button {
+    background: #555;
+    color: white;
+    border: none;
+    padding: 0.7em 1.5em;
+    cursor: pointer;
   }
 }
