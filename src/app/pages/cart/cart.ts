@@ -1,16 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, signal, computed, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
-import { AppState } from '../../state/app.state';
-import {
-  selectCartItems,
-  selectCartTotal,
-} from '../../state/book/cart.selectors';
-import { clearCart, removeFromCart } from '../../state/book/cart.actions';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
@@ -20,19 +13,58 @@ import { clearCart, removeFromCart } from '../../state/book/cart.actions';
   styleUrls: ['./cart.scss'],
 })
 export class Cart {
-  cartItems$: Observable<any[]>;
-  cartTotal$: Observable<number>;
+  private router = inject(Router);
+  private http = inject(HttpClient);
 
-  constructor(private store: Store<AppState>) {
-    this.cartItems$ = this.store.select(selectCartItems);
-    this.cartTotal$ = this.store.select(selectCartTotal);
+  // ✅ Cart items with added local `quantity`
+  cartItems = signal<any[]>([]);
+  cartTotal = computed(() =>
+    this.cartItems()
+      .map((item) => item.price * item.quantity)
+      .reduce((acc, val) => acc + val, 0)
+  );
+
+  constructor() {
+    this.fetchCartItems();
   }
 
-  removeItem(index: number): void {
-    this.store.dispatch(removeFromCart({ index }));
+  fetchCartItems() {
+    // ✅ Fake API — customize this to your real endpoint if needed
+    this.http
+      .get<any[]>('https://fakestoreapi.com/products?limit=3') // example with limit
+      .subscribe((items) => {
+        const withQuantities = items.map((item) => ({
+          ...item,
+          quantity: 1, // start with 1 quantity
+        }));
+        this.cartItems.set(withQuantities);
+      });
   }
 
-  clearCart(): void {
-    this.store.dispatch(clearCart());
+  increaseItemQty(index: number) {
+    const updated = this.cartItems().map((item, i) =>
+      i === index ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    this.cartItems.set(updated);
+  }
+
+  decreaseItemQty(index: number) {
+    const updated = this.cartItems().map((item, i) =>
+      i === index ? { ...item, quantity: Math.max(1, item.quantity - 1) } : item
+    );
+    this.cartItems.set(updated);
+  }
+
+  removeItem(index: number) {
+    const updated = this.cartItems().filter((_, i) => i !== index);
+    this.cartItems.set(updated);
+  }
+
+  clearCart() {
+    this.cartItems.set([]);
+  }
+
+  goToHomePage() {
+    this.router.navigate(['']);
   }
 }
