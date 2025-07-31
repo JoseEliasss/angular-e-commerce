@@ -3,10 +3,11 @@
   || desc==='all') {
   <div class="product-card" (click)="goToProduct(product.id)">
     <img [src]="product.image" alt="{{ product.title }}" />
-    <h3>{{ product.title }}</h3>
+    <h3 class="titleCut">{{ product.titleCut }}</h3>
+    <h3 class="title">{{ product.title }}</h3>
     <span class="pprice">
       <p>${{ product.price }}</p>
-      <s>${{ product.price * 1.5 }}</s>
+      <s>${{ product.discount }}</s>
     </span>
   </div>
   } }

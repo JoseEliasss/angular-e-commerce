@@ -1,0 +1,119 @@
+<app-header></app-header>
+
+<div class="checkout-container">
+  <form
+    [formGroup]="checkoutForm"
+    class="billing-form"
+    (ngSubmit)="placeOrder()"
+  >
+    <h2>Billing Details</h2>
+
+    <label>First Name*</label>
+    <input type="text" formControlName="fname" />
+    @if (checkoutForm.get('fname')?.invalid &&
+    checkoutForm.get('fname')?.touched) {
+    <div class="error">
+      @if (checkoutForm.get('fname')?.errors?.['required']) { First name is
+      required. } @if (checkoutForm.get('fname')?.errors?.['minlength']) {
+      Minimum 3 characters. } @if
+      (checkoutForm.get('fname')?.errors?.['maxlength']) { Maximum 20
+      characters. }
+    </div>
+    }
+
+    <label>Company Name</label>
+    <input type="text" formControlName="company" />
+    @if (checkoutForm.get('company')?.invalid &&
+    checkoutForm.get('company')?.touched) {
+    <div class="error">company is required.</div>
+    }
+
+    <label>Street Address*</label>
+    <input type="text" formControlName="address" />
+    @if (checkoutForm.get('address')?.invalid &&
+    checkoutForm.get('address')?.touched) {
+    <div class="error">Address is required.</div>
+    }
+
+    <label>Apartment, floor, etc.</label>
+    <input type="text" formControlName="apartment" />
+    @if (checkoutForm.get('apartment')?.invalid &&
+    checkoutForm.get('apartment')?.touched) {
+    <div class="error">Apartment is required.</div>
+    }
+
+    <label>Town/City*</label>
+    <input type="text" formControlName="city" />
+    @if (checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched)
+    {
+    <div class="error">City is required.</div>
+    }
+
+    <label>Phone Number*</label>
+    <input type="tel" formControlName="phone" />
+    @if (checkoutForm.get('phone')?.invalid &&
+    checkoutForm.get('phone')?.touched) {
+    <div class="error">
+      @if (checkoutForm.get('phone')?.errors?.['required']) { Phone is required.
+      } @if (checkoutForm.get('phone')?.errors?.['pattern']) { Must be 7–15
+      digits. }
+    </div>
+    }
+
+    <label>Email Address*</label>
+    <input type="email" formControlName="email" />
+    @if (checkoutForm.get('email')?.invalid &&
+    checkoutForm.get('email')?.touched) {
+    <div class="error">
+      @if (checkoutForm.get('email')?.errors?.['required']) { Email is required.
+      } @if (checkoutForm.get('email')?.errors?.['email']) { Must be a valid
+      email. }
+    </div>
+    }
+
+    <label class="save-info">
+      <input type="checkbox" formControlName="saveInfo" />
+      Save this information for faster check-out next time
+    </label>
+  </form>
+
+  <div class="summary">
+    <div class="price-breakdown">
+      <p>
+        <span>Subtotal:</span> <span>${{ total() }}</span>
+      </p>
+      <p><span>Shipping:</span> <span>Free</span></p>
+      <hr />
+      <p class="total">
+        <span>Total:</span> <span>${{ total() }}</span>
+      </p>
+    </div>
+
+    <div class="payment-method">
+      <form action="">
+        <label>
+          <input type="radio" name="payment" value="bank" />
+          Bank
+          <img src="/assets/visa.png" alt="cards" />
+        </label>
+
+        <label>
+          <input type="radio" name="payment" value="cash" />
+          Cash on delivery
+        </label>
+      </form>
+    </div>
+
+    <div class="coupon">
+      <input type="text" placeholder="Coupon Code" />
+      <button type="button">Apply Coupon</button>
+    </div>
+
+    <button type="submit" class="place-order" (click)="placeOrder()">
+      Place Order
+    </button>
+    <span> {{ orderMessage }}</span>
+  </div>
+</div>
+
+<app-footer></app-footer>

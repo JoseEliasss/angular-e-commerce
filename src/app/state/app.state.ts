@@ -1,4 +1,4 @@
-import { CartState } from './book/cart.reducers';
+import { CartState } from './cart/cart.reducers';
 
 export interface AppState {
   cart: CartState;

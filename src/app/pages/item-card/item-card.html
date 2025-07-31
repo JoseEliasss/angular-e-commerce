@@ -55,26 +55,24 @@
           </label>
         </span>
         <div class="quantityAndCart">
-          <div class="quantity">
-            <button type="button" class="minus" (click)="minusOne()">-</button>
-            <b>{{ quantity }}</b>
-            <button type="button" class="plus" (click)="plusOne()">+</button>
-          </div>
           <span class="favAndCart">
             <button (click)="addToCart()">Add to Cart</button>
             @if(added===true){
             <span>item added to cart!</span>
             }
             <img
-              src="/assets/favorite.png"
-              alt="favicon"
+              [src]="
+                isFavorite() ? '/assets/fav-filled.png' : '/assets/favorite.png'
+              "
+              alt="favorite icon"
               width="30px"
               height="30px"
+              (click)="toggleFavorite()"
             />
           </span>
         </div>
       </div>
-      <img src="/assets/freeandFastDeliver.png" alt="freeandFastDeliver" />
+      <!-- <img src="/assets/freeandFastDeliver.png" alt="freeandFastDeliver" /> -->
     </div>
   </div>
   <span class="todays">

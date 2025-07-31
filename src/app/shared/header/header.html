@@ -29,15 +29,21 @@
             width="25px"
           />
         </span>
-        <img
-          src="/assets/favorite.png"
-          alt="favicon"
-          height="25px"
-          width="25px"
-        />
-        <a href="/cart">
-          <img src="/assets/cart.png" alt="cart" height="25px" width="25px"
-        /></a>
+        <a href="favorite">
+          <img
+            src="/assets/favorite.png"
+            alt="favicon"
+            height="25px"
+            width="25px"
+          />
+        </a>
+        <a href="/cart" class="cart-icon-wrapper">
+          <img src="/assets/cart.png" alt="cart" height="25px" width="25px" />
+          <span class="cart-count-badge" *ngIf="cartCount() > 0">{{
+            cartCount()
+          }}</span>
+        </a>
+
         <img
           src="/assets/profile.png"
           alt="profile"
@@ -52,6 +58,9 @@
           <a routerLink="/contact" (click)="closeSidebar()">Contact</a>
           <a routerLink="/about" (click)="closeSidebar()">About</a>
           <a routerLink="/signup" (click)="closeSidebar()">Sign Up</a>
+          <a routerLink="/cart" (click)="closeSidebar()">Cart</a>
+          <a routerLink="/favorite" (click)="closeSidebar()">Favorite</a>
+          <a routerLink="/profile" (click)="closeSidebar()">Profile</a>
         </nav>
       </div>
     </div>

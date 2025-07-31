@@ -11,6 +11,8 @@ import { AllProducts } from './pages/all-products/all-products';
 
 import { ItemCard } from './pages/item-card/item-card';
 import { Cart } from './pages/cart/cart';
+import { FavoritesComponent } from './pages/favorites/favorites';
+import { Checkout } from './pages/checkout/checkout';
 
 export const routes: Routes = [
   {
@@ -25,6 +27,8 @@ export const routes: Routes = [
   { path: 'signup', component: SignUp },
   { path: 'allproducts', component: AllProducts },
   { path: 'cart', component: Cart },
+  { path: 'favorite', component: FavoritesComponent },
+  { path: 'checkout', component: Checkout },
   {
     path: 'signup',
     loadComponent: () =>

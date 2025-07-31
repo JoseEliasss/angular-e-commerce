@@ -12,7 +12,7 @@ import {
 import { routes } from './app.routes';
 import { interceptor401Interceptor } from './core/interceptor401-interceptor';
 import { provideStore } from '@ngrx/store';
-import { cartReducer } from './state/book/cart.reducers';
+import { cartReducer } from './state/cart/cart.reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
