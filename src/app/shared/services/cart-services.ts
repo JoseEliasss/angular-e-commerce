@@ -1,24 +1,37 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, computed, effect } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/app.state';
+import { selectCartItems } from '../../state/cart/cart.selectors';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class CartService {
-  private cartItems: any[] = [];
+  [x: string]: any;
+  private cartCountSignal = signal(0);
+  private totalSignal = signal(0);
 
-  addToCart(product: any) {
-    this.cartItems.push(product);
+  readonly cartCount = this.cartCountSignal.asReadonly();
+  readonly total = this.totalSignal.asReadonly();
+
+  constructor(private store: Store<AppState>) {
+    effect(() => {
+      this.store.select(selectCartItems).subscribe((items) => {
+        this.cartCountSignal.set(items.length);
+      });
+    });
+  }
+  setTotal(amount: number): void {
+    this.totalSignal.set(amount);
+  }
+  increment() {
+    this.cartCountSignal.update((count) => count + 1);
   }
 
-  getCartItems(): any[] {
-    return this.cartItems;
+  decrement() {
+    this.cartCountSignal.update((count) => Math.max(count - 1, 0));
   }
 
-  removeFromCart(index: number) {
-    this.cartItems.splice(index, 1);
-  }
-
-  clearCart() {
-    this.cartItems = [];
+  reset() {
+    this.cartCountSignal.set(0);
+    this.totalSignal.set(0);
   }
 }
