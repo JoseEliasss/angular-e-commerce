@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormGroup,
@@ -29,7 +29,8 @@ export class Login {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private route: ActivatedRoute
   ) {
     this.loginForm = this.formBuilder.group({
       email: [
@@ -61,9 +62,12 @@ export class Login {
         .subscribe({
           next: (res) => {
             this.store.dispatch(
-              loginSuccess({ username: credentials.Username }) // ✅ Dispatch action to NgRx store
+              loginSuccess({ username: credentials.Username })
             );
-            this.router.navigate(['/']); // ✅ Redirect to home page
+
+            const returnUrl =
+              this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+            this.router.navigate([returnUrl]);
           },
           error: (err) => {
             this.errorMessage = 'Login failed. Please try again.';
@@ -71,10 +75,9 @@ export class Login {
           },
         });
     } else {
-      this.loginForm.markAllAsTouched(); // ✅ Mark all form fields to show errors
+      this.loginForm.markAllAsTouched();
     }
   }
-
   get f() {
     return this.loginForm.controls;
   }

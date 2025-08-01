@@ -11,6 +11,8 @@ import { AuthService } from '../../core/authentication/auth';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import { logout } from '../../state/auth/auth.actions';
+import { CartService } from '../../shared/services/cart-services';
+import { clearCart } from '../../state/cart/cart.actions';
 
 @Component({
   selector: 'app-home-page',
@@ -39,7 +41,8 @@ export class HomePage implements OnInit {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
-    private store: Store<AppState> // ✅ Inject NgRx store
+    private store: Store<AppState>,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +58,8 @@ export class HomePage implements OnInit {
   }
 
   logOutAcc() {
+    this.cartService.reset();
+    this.store.dispatch(clearCart());
     this.authService.logout(); // ✅ Clear token (optional)
     this.store.dispatch(logout()); // ✅ Dispatch logout to clear state/localStorage
     this.router.navigate(['/login']); // ✅ Redirect to login page
