@@ -3,6 +3,10 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../services/cart-services';
 import { Favorites } from '../services/favorites';
+import { Store } from '@ngrx/store';
+import { clearCart } from '../../state/cart/cart.actions';
+import { logout } from '../../state/auth/auth.actions';
+import { AuthService } from '../../core/authentication/auth';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +16,14 @@ import { Favorites } from '../services/favorites';
   styleUrl: './header.scss',
 })
 export class Header {
+  private store = inject(Store);
+  private authService = inject(AuthService);
   favoritesCount = inject(Favorites).favoritesCount;
-
   cartService = inject(CartService);
   cartCount = this.cartService.cartCount;
 
   sidebarOpen = false;
+  dropdownOpen = false;
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -25,5 +31,25 @@ export class Header {
 
   closeSidebar() {
     this.sidebarOpen = false;
+  }
+
+  toggleDropdown(event: MouseEvent) {
+    event.stopPropagation();
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  closeDropdown() {
+    this.dropdownOpen = false;
+  }
+  logOutAcc() {
+    this.cartService.reset();
+    this.store.dispatch(clearCart());
+    this.authService.logout();
+    this.store.dispatch(logout());
+  }
+  constructor() {
+    document.addEventListener('click', () => {
+      this.dropdownOpen = false;
+    });
   }
 }
