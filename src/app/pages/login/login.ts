@@ -10,6 +10,9 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/authentication/auth';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/app.state';
+import { loginSuccess } from '../../state/auth/auth.actions'; // <-- import this
 
 @Component({
   selector: 'app-login',
@@ -25,7 +28,8 @@ export class Login {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {
     this.loginForm = this.formBuilder.group({
       email: [
@@ -49,13 +53,17 @@ export class Login {
         Username: this.loginForm.value.email,
         Password: this.loginForm.value.password,
       };
+
       this.authService
         .login(credentials, (msg: string) => {
           this.errorMessage = msg;
         })
         .subscribe({
           next: (res) => {
-            this.router.navigate(['/']);
+            this.store.dispatch(
+              loginSuccess({ username: credentials.Username }) // ✅ Dispatch action to NgRx store
+            );
+            this.router.navigate(['/']); // ✅ Redirect to home page
           },
           error: (err) => {
             this.errorMessage = 'Login failed. Please try again.';
@@ -63,7 +71,7 @@ export class Login {
           },
         });
     } else {
-      this.loginForm.markAllAsTouched();
+      this.loginForm.markAllAsTouched(); // ✅ Mark all form fields to show errors
     }
   }
 
