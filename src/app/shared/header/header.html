@@ -44,12 +44,23 @@
           }}</span>
         </a>
 
-        <img
-          src="/assets/profile.png"
-          alt="profile"
-          height="25px"
-          width="25px"
-        />
+        <div class="profile-wrapper" (click)="toggleDropdown($event)">
+          <img
+            [src]="dropdownOpen ? '/assets/user.png' : '/assets/profile.png'"
+            alt="profile"
+            height="30px"
+            width="30px"
+          />
+
+          <div class="dropdown-menu" *ngIf="dropdownOpen">
+            <ul>
+              <li><a routerLink="/account">Manage My Account</a></li>
+              <li><a routerLink="/admindashboard">Admin Dashboard</a></li>
+
+              <li (click)="logOutAcc()">Logout</li>
+            </ul>
+          </div>
+        </div>
       </span>
 
       <div class="sidebar" [class.open]="sidebarOpen">

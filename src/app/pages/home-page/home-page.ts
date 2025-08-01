@@ -60,8 +60,7 @@ export class HomePage implements OnInit {
   logOutAcc() {
     this.cartService.reset();
     this.store.dispatch(clearCart());
-    this.authService.logout(); // ✅ Clear token (optional)
-    this.store.dispatch(logout()); // ✅ Dispatch logout to clear state/localStorage
-    this.router.navigate(['/login']); // ✅ Redirect to login page
+    this.authService.logout();
+    this.store.dispatch(logout());
   }
 }
