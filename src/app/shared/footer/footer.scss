@@ -6,10 +6,12 @@ footer {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: stretch; /* stretches all sections to equal height */
-  padding: 2em;
+  align-items: stretch;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2em;
   margin-top: 5em;
-  gap: 1em; /* optional spacing between blocks */
+  gap: 1em;
 }
 
 .sections {
@@ -50,6 +52,8 @@ footer {
     align-items: stretch;
     gap: 1.5em;
     padding: 1em;
+    padding-left: 5%;
+    padding-right: 5%;
   }
 
   .sections {

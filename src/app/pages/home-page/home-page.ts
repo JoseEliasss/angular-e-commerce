@@ -6,11 +6,17 @@ import { CommonModule } from '@angular/common';
 import { Countercomponent } from '../countercomponent/countercomponent';
 import { Products } from '../../shared/components/products/products';
 import { Categories } from '../../shared/components/products/categories/categories';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../core/authentication/auth';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/app.state';
+import { logout } from '../../state/auth/auth.actions';
+import { CartService } from '../../shared/services/cart-services';
+import { clearCart } from '../../state/cart/cart.actions';
 
 @Component({
   selector: 'app-home-page',
+  standalone: true,
   imports: [
     Header,
     Footer,
@@ -28,12 +34,15 @@ export class HomePage implements OnInit {
     { image: '/assets/customerservice.png' },
     { image: '/assets/moneybackguarantee.png' },
   ];
+
   products: any[] = [];
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<AppState>,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -43,11 +52,15 @@ export class HomePage implements OnInit {
         this.products = data;
       });
   }
+
   gotToAllProducts() {
     this.router.navigate(['/allproducts']);
   }
+
   logOutAcc() {
+    this.cartService.reset();
+    this.store.dispatch(clearCart());
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.store.dispatch(logout());
   }
 }

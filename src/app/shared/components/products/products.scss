@@ -11,6 +11,9 @@
 }
 
 .product-card {
+  .title {
+    display: none;
+  }
   background: #fff;
   border-radius: 12px;
   padding: 16px;
@@ -24,6 +27,16 @@
   flex: 0 0 auto;
   width: 300px;
   scroll-snap-align: start;
+  height: 350px;
+  &:hover {
+    cursor: pointer;
+    .titleCut {
+      display: none;
+    }
+    .title {
+      display: block;
+    }
+  }
 
   img {
     width: 100%;
@@ -37,6 +50,9 @@
     font-size: 16px;
     font-weight: 600;
     margin: 8px 0;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   s {
     color: #777;

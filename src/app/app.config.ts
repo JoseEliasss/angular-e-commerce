@@ -12,7 +12,10 @@ import {
 import { routes } from './app.routes';
 import { interceptor401Interceptor } from './core/interceptor401-interceptor';
 import { provideStore } from '@ngrx/store';
-import { cartReducer } from './state/book/cart.reducers';
+import { cartReducer } from './state/cart/cart.reducers';
+import { authReducer } from './state/auth/autht.reducers';
+import { provideEffects } from '@ngrx/effects';
+import { AuthEffects } from './state/auth/auth.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([interceptor401Interceptor])),
     provideHttpClient(withFetch()),
-    provideStore({ cart: cartReducer }),
+    provideStore({ cart: cartReducer, auth: authReducer }),
   ],
 };
