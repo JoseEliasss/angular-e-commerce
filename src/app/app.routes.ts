@@ -13,6 +13,7 @@ import { ItemCard } from './pages/item-card/item-card';
 import { Cart } from './pages/cart/cart';
 import { FavoritesComponent } from './pages/favorites/favorites';
 import { Checkout } from './pages/checkout/checkout';
+import { RedirectIfLoggedInGuard } from './core/redirect-if-logged-in.guard';
 
 export const routes: Routes = [
   {
@@ -20,11 +21,11 @@ export const routes: Routes = [
     component: HomePage,
   },
   { path: 'itemcard/:id', component: ItemCard },
-  { path: 'login', component: Login },
+  { path: 'login', component: Login, canActivate: [RedirectIfLoggedInGuard] },
   { path: 'contact', component: Contact },
   { path: 'about', component: About },
   { path: 'admindashboard', component: AdminDashboard },
-  { path: 'signup', component: SignUp },
+  { path: 'signup', component: SignUp, canActivate: [RedirectIfLoggedInGuard] },
   { path: 'allproducts', component: AllProducts },
   { path: 'cart', component: Cart },
   { path: 'favorite', component: FavoritesComponent },
