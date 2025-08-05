@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../services/cart-services';
 import { Favorites } from '../services/favorites';
 import { Store } from '@ngrx/store';
@@ -18,6 +18,7 @@ import { AuthService } from '../../core/authentication/auth';
 export class Header {
   private store = inject(Store);
   private authService = inject(AuthService);
+  private router = inject(Router);
   favoritesCount = inject(Favorites).favoritesCount;
   cartService = inject(CartService);
   cartCount = this.cartService.cartCount;
@@ -46,6 +47,7 @@ export class Header {
     this.store.dispatch(clearCart());
     this.authService.logout();
     this.store.dispatch(logout());
+    this.router.navigate(['']);
   }
   constructor() {
     document.addEventListener('click', () => {
