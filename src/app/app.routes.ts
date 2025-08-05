@@ -15,6 +15,7 @@ import { FavoritesComponent } from './pages/favorites/favorites';
 import { Checkout } from './pages/checkout/checkout';
 import { redirectIfLoggedInGuard } from './core/redirect-if-logged-in.guard';
 import { adminOnlyGuard } from './core/admin-only-guard';
+import { Profile } from './pages/profile/profile';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,7 @@ export const routes: Routes = [
   { path: 'cart', component: Cart },
   { path: 'favorite', component: FavoritesComponent },
   { path: 'checkout', component: Checkout },
+  { path: 'profile', component: Profile },
   {
     path: 'signup',
     loadComponent: () =>

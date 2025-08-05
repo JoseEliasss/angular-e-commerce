@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="profile-container">
+  <h2>User Profile</h2>
+
+  <form [formGroup]="profileForm">
+    <label>
+      Username:
+      <input formControlName="username" type="text" />
+    </label>
+
+    <label>
+      Email:
+      <input formControlName="email" type="email" />
+    </label>
+  </form>
+
+  <div class="actions">
+    <button *ngIf="!editMode" (click)="toggleEdit()">Edit</button>
+    <button *ngIf="editMode" (click)="saveChanges()">Save</button>
+    <button *ngIf="editMode" (click)="toggleEdit()">Cancel</button>
+  </div>
+</div>
+<app-footer></app-footer>
