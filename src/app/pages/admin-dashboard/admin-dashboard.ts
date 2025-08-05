@@ -6,18 +6,26 @@ import { ColDef } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
 import { DeleteButtonDashboard } from '../delete-button-dashboard/delete-button-dashboard';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import { FormsModule } from '@angular/forms';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [Header, Footer, AgGridAngular],
+  imports: [Header, Footer, AgGridAngular, FormsModule], // <-- Include FormsModule
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.scss',
 })
 export class AdminDashboard {
   rowData: any[] = [];
+
+  newProduct = {
+    title: '',
+    price: null,
+    category: '',
+    image: '',
+  };
 
   paginationPageSize = 5;
 
@@ -66,5 +74,18 @@ export class AdminDashboard {
       .subscribe((data) => {
         this.rowData = data;
       });
+  }
+
+  addProduct() {
+    const newItem = { ...this.newProduct };
+    this.rowData = [newItem, ...this.rowData];
+
+    // Reset the form
+    this.newProduct = {
+      title: '',
+      price: null,
+      category: '',
+      image: '',
+    };
   }
 }

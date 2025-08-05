@@ -1,4 +1,12 @@
 <app-header></app-header>
+<div class="add-product-form">
+  <input type="text" placeholder="Title" [(ngModel)]="newProduct.title" />
+  <input type="number" placeholder="Price" [(ngModel)]="newProduct.price" />
+  <input type="text" placeholder="Category" [(ngModel)]="newProduct.category" />
+  <input type="text" placeholder="Image URL" [(ngModel)]="newProduct.image" />
+  <button (click)="addProduct()">Add Product</button>
+</div>
+
 <ag-grid-angular
   class="ag-theme-alpine"
   style="width: 100%; height: 500px"
