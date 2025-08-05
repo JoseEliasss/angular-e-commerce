@@ -2,7 +2,7 @@ import { CanActivateFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-export const RedirectIfLoggedInGuard: CanActivateFn = () => {
+export const redirectIfLoggedInGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   const authRaw = localStorage.getItem('authState');

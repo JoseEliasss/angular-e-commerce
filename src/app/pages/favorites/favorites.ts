@@ -62,3 +62,5 @@ export class FavoritesComponent implements OnInit {
       });
   }
 }
+
+export { Favorites };

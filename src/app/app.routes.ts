@@ -13,7 +13,8 @@ import { ItemCard } from './pages/item-card/item-card';
 import { Cart } from './pages/cart/cart';
 import { FavoritesComponent } from './pages/favorites/favorites';
 import { Checkout } from './pages/checkout/checkout';
-import { RedirectIfLoggedInGuard } from './core/redirect-if-logged-in.guard';
+import { redirectIfLoggedInGuard } from './core/redirect-if-logged-in.guard';
+import { adminOnlyGuard } from './core/admin-only-guard';
 
 export const routes: Routes = [
   {
@@ -21,11 +22,15 @@ export const routes: Routes = [
     component: HomePage,
   },
   { path: 'itemcard/:id', component: ItemCard },
-  { path: 'login', component: Login, canActivate: [RedirectIfLoggedInGuard] },
+  { path: 'login', component: Login, canActivate: [redirectIfLoggedInGuard] },
   { path: 'contact', component: Contact },
   { path: 'about', component: About },
-  { path: 'admindashboard', component: AdminDashboard },
-  { path: 'signup', component: SignUp, canActivate: [RedirectIfLoggedInGuard] },
+  {
+    path: 'admindashboard',
+    component: AdminDashboard,
+    canActivate: [adminOnlyGuard],
+  },
+  { path: 'signup', component: SignUp, canActivate: [redirectIfLoggedInGuard] },
   { path: 'allproducts', component: AllProducts },
   { path: 'cart', component: Cart },
   { path: 'favorite', component: FavoritesComponent },
