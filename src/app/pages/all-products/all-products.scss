@@ -1,6 +1,44 @@
 .container {
-  margin: 5em 2em;
+  margin: 5em 2%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+}
+
+.sort-wrapper {
+  position: absolute;
+  right: 5%;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.sort-button {
+  padding: 0.5em 1.5em;
+  margin: 0% 3%;
+  font-weight: bold;
+  border: none;
+  background-color: #222;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  background-color: #db4444;
+  color: white;
+}
+
+.sort-button:hover {
+  background-color: #444;
+}
+select {
+  background-color: #db4444;
+  color: white;
+  padding: 0.5em 0.5em;
+  text-align: center;
+  border-width: 0px;
+  border-radius: 5px;
+  & :hover {
+    background-color: #222;
+  }
 }
