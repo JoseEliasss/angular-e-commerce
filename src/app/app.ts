@@ -10,5 +10,5 @@ ModuleRegistry.registerModules([AllCommunityModule]);
   styleUrl: './app.scss',
 })
 export class App {
-  protected title = 'e-commere';
+  protected title = 'ByTech';
 }
