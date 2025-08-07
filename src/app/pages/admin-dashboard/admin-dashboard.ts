@@ -2,18 +2,15 @@ import { Component } from '@angular/core';
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, GridReadyEvent } from 'ag-grid-community';
 import { HttpClient } from '@angular/common/http';
 import { DeleteButtonDashboard } from '../delete-button-dashboard/delete-button-dashboard';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { FormsModule } from '@angular/forms';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [Header, Footer, AgGridAngular, FormsModule], // <-- Include FormsModule
+  imports: [Header, Footer, AgGridAngular, FormsModule],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.scss',
 })
@@ -34,7 +31,7 @@ export class AdminDashboard {
       headerName: 'Product',
       field: 'title',
       flex: 2,
-      cellRenderer: (params: { data: { image: any; title: any } }) => {
+      cellRenderer: (params: { data: { image: string; title: string } }) => {
         const { image, title } = params.data;
         return `
           <div style="display: flex; align-items: center; gap: 10px;">
@@ -66,6 +63,8 @@ export class AdminDashboard {
     sortable: true,
     filter: true,
     resizable: true,
+    floatingFilter: true,
+    editable: true,
   };
 
   constructor(private http: HttpClient) {
@@ -80,7 +79,6 @@ export class AdminDashboard {
     const newItem = { ...this.newProduct };
     this.rowData = [newItem, ...this.rowData];
 
-    // Reset the form
     this.newProduct = {
       title: '',
       price: null,

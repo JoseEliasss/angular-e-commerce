@@ -2,19 +2,31 @@
 
 <div class="container">
   <div class="sort-wrapper">
-    <select [(ngModel)]="sortOrder" class="sort-select">
+    <select
+      [(ngModel)]="sortOrder"
+      (change)="onSortChange()"
+      class="sort-select"
+    >
       <option value="low-high">Price: Low → High</option>
       <option value="high-low">Price: High → Low</option>
       <option value="az">A → Z</option>
       <option value="za">Z → A</option>
     </select>
   </div>
-  <br /><br />
-  <app-products
-    [desc]="'all'"
-    layout="vertical"
-    [sortOrder]="sortOrder"
-  ></app-products>
+
+  <div class="product-all">
+    @for (product of filteredProducts; track product.id) {
+    <div class="product-card" (click)="goToProduct(product.id)">
+      <img [src]="product.image" alt="{{ product.title }}" />
+      <h3 class="titleCut">{{ product.titleCut }}</h3>
+      <h3 class="title">{{ product.title }}</h3>
+      <span class="pprice">
+        <p>${{ product.price }}</p>
+        <s>${{ product.discount }}</s>
+      </span>
+    </div>
+    }
+  </div>
 </div>
 
 <app-footer></app-footer>

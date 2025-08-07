@@ -109,11 +109,12 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import { addToCart } from '../../state/cart/cart.actions';
 import { Favorites } from '../../shared/services/favorites';
+import { LoadingScreen } from '../../shared/components/loading-screen/loading-screen';
 
 @Component({
   selector: 'app-item-card',
   standalone: true,
-  imports: [CommonModule, Header, Footer],
+  imports: [CommonModule, Header, Footer, LoadingScreen],
   templateUrl: './item-card.html',
   styleUrls: ['./item-card.scss'],
 })
@@ -135,16 +136,22 @@ export class ItemCard implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.loadProduct(id);
-    }
+    this.route.paramMap.subscribe((params) => {
+      const id = Number(params.get('id'));
+      if (id) {
+        this.loading = true;
+        this.loadProduct(id);
+      }
+    });
 
-    this.http
-      .get<any[]>('https://fakestoreapi.com/products')
-      .subscribe((data) => {
+    this.http.get<any[]>('https://fakestoreapi.com/products').subscribe({
+      next: (data) => {
         this.products = data;
-      });
+      },
+      error: () => {
+        this.error = 'Failed to load related products.';
+      },
+    });
   }
 
   loadProduct(id: number) {

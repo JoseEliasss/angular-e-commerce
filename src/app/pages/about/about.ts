@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
-import { Categories } from '../../shared/components/products/categories/categories';
+import { Categories } from '../../shared/components/categories/categories';
 
 @Component({
   selector: 'app-about',

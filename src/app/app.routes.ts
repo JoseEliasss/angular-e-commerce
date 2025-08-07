@@ -14,13 +14,15 @@ import { Cart } from './pages/cart/cart';
 import { FavoritesComponent } from './pages/favorites/favorites';
 import { Checkout } from './pages/checkout/checkout';
 import { redirectIfLoggedInGuard } from './core/redirect-if-logged-in.guard';
-import { adminOnlyGuard } from './core/admin-only-guard';
+// import { adminOnlyGuard } from './core/admin-only-guard';
 import { Profile } from './pages/profile/profile';
+import { adminOnlyGuard } from './core/admin-only-guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomePage,
+    loadComponent: () =>
+      import('./pages/home-page/home-page').then((m) => m.HomePage),
   },
   { path: 'itemcard/:id', component: ItemCard },
   { path: 'login', component: Login, canActivate: [redirectIfLoggedInGuard] },
@@ -32,11 +34,15 @@ export const routes: Routes = [
     canActivate: [adminOnlyGuard],
   },
   { path: 'signup', component: SignUp, canActivate: [redirectIfLoggedInGuard] },
-  { path: 'allproducts', component: AllProducts },
+  {
+    path: 'allproducts',
+    loadComponent: () =>
+      import('./pages/all-products/all-products').then((m) => m.AllProducts),
+  },
   { path: 'cart', component: Cart },
   { path: 'favorite', component: FavoritesComponent },
   { path: 'checkout', component: Checkout },
-  { path: 'profile', component: Profile },
+  { path: 'profile', component: Profile, canActivate: [canActivateGuard] },
   {
     path: 'signup',
     loadComponent: () =>

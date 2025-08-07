@@ -30,7 +30,9 @@
     "@ngrx/effects": "^20.0.0",
     "@ngrx/store": "^20.0.0",
     "ag-grid-angular": "^34.0.2",
+    "ag-grid-enterprise": "^34.1.1",
     "eslint": "^9.31.0",
+    "ngx-spinner": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

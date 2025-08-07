@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Footer } from '../../shared/footer/footer';
 import { Header } from '../../shared/header/header';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Countercomponent } from '../countercomponent/countercomponent';
 import { Products } from '../../shared/components/products/products';
-import { Categories } from '../../shared/components/products/categories/categories';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/authentication/auth';
 import { Store } from '@ngrx/store';
@@ -13,6 +11,8 @@ import { AppState } from '../../state/app.state';
 import { logout } from '../../state/auth/auth.actions';
 import { CartService } from '../../shared/services/cart-services';
 import { clearCart } from '../../state/cart/cart.actions';
+import { ProductService } from '../../shared/services/productService';
+import { Categories } from '../../shared/components/categories/categories';
 
 @Component({
   selector: 'app-home-page',
@@ -28,7 +28,7 @@ import { clearCart } from '../../state/cart/cart.actions';
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })
-export class HomePage implements OnInit {
+export class HomePage {
   services = [
     { image: '/assets/freeandfastdelivery.png' },
     { image: '/assets/customerservice.png' },
@@ -38,29 +38,27 @@ export class HomePage implements OnInit {
   products: any[] = [];
 
   constructor(
-    private http: HttpClient,
     private router: Router,
     private authService: AuthService,
     private store: Store<AppState>,
-    private cartService: CartService
+    private cartService: CartService,
+    private productService: ProductService
   ) {}
 
-  ngOnInit(): void {
-    this.http
-      .get<any[]>('https://fakestoreapi.com/products')
-      .subscribe((data) => {
-        this.products = data;
-      });
-  }
+  // ngOnInit(): void {
+  //   this.productService.getProducts().subscribe((data) => {
+  //     this.products = data;
+  //   });
+  // }
 
   gotToAllProducts() {
     this.router.navigate(['/allproducts']);
   }
 
-  logOutAcc() {
-    this.cartService.reset();
-    this.store.dispatch(clearCart());
-    this.authService.logout();
-    this.store.dispatch(logout());
-  }
+  // logOutAcc() {
+  //   this.cartService.reset();
+  //   this.store.dispatch(clearCart());
+  //   this.authService.logout();
+  //   this.store.dispatch(logout());
+  // }
 }

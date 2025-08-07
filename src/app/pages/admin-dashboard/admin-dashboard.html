@@ -1,4 +1,5 @@
 <app-header></app-header>
+
 <div class="add-product-form">
   <input type="text" placeholder="Title" [(ngModel)]="newProduct.title" />
   <input type="number" placeholder="Price" [(ngModel)]="newProduct.price" />
@@ -13,6 +14,8 @@
   [rowData]="rowData"
   [columnDefs]="colDefs"
   [defaultColDef]="defaultColDef"
-  [pagination]="paginationPageSize"
+  [pagination]="true"
+  [paginationPageSize]="paginationPageSize"
 ></ag-grid-angular>
+
 <app-footer></app-footer>

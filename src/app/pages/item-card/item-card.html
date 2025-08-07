@@ -1,5 +1,6 @@
 @if(loading){
-<p>Loading product details...</p>
+<app-loading-screen [visible]="loading"></app-loading-screen>
+
 } @else{
 <app-header></app-header>
 <p class="error">{{ error }}</p>
@@ -60,15 +61,6 @@
             @if(added===true){
             <span>item added to cart!</span>
             }
-            <img
-              [src]="
-                isFavorite() ? '/assets/fav-filled.png' : '/assets/favorite.png'
-              "
-              alt="favorite icon"
-              width="30px"
-              height="30px"
-              (click)="toggleFavorite()"
-            />
           </span>
         </div>
       </div>
