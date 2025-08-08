@@ -20,6 +20,8 @@ export class Profile {
   profileForm: FormGroup;
   editMode = false;
 
+  avatarDataUrl: string | null = null;
+
   constructor(private fb: FormBuilder) {
     const user = JSON.parse(localStorage.getItem('authState') || '{}');
 
@@ -28,7 +30,7 @@ export class Profile {
       email: [user.email || '', [Validators.required, Validators.email]],
     });
 
-    this.profileForm.disable(); // Start in view mode
+    this.profileForm.disable();
   }
 
   toggleEdit() {
@@ -46,5 +48,23 @@ export class Profile {
       localStorage.setItem('authState', JSON.stringify(updatedUser));
       this.toggleEdit();
     }
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.avatarDataUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  initials(name: string | null | undefined): string {
+    if (!name) return 'U';
+    const parts = name.trim().split(/\s+/).slice(0, 2);
+    return parts.map((p) => p[0]?.toUpperCase() || '').join('') || 'U';
   }
 }

@@ -37,3 +37,23 @@
     }
   }
 }
+.avatar-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.avatar,
+.avatar-img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f1f3f5;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #555;
+}

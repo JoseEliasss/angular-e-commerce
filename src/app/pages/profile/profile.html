@@ -1,6 +1,22 @@
 <app-header></app-header>
+
 <div class="profile-container">
   <h2>User Profile</h2>
+
+  <!-- Profile Picture Preview -->
+  <div class="avatar-block">
+    <div class="avatar" *ngIf="!avatarDataUrl; else hasPhoto">
+      <span>{{ initials(profileForm.get("username")?.value) }}</span>
+    </div>
+    <ng-template #hasPhoto>
+      <img [src]="avatarDataUrl" alt="Profile photo" class="avatar-img" />
+    </ng-template>
+
+    <!-- Change Photo Input -->
+    <div *ngIf="editMode">
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+    </div>
+  </div>
 
   <form [formGroup]="profileForm">
     <label>
@@ -20,4 +36,5 @@
     <button *ngIf="editMode" (click)="toggleEdit()">Cancel</button>
   </div>
 </div>
+
 <app-footer></app-footer>
