@@ -7,9 +7,12 @@ import {
   FormGroup,
   ReactiveFormsModule,
   Validators,
+  AbstractControl,
+  ValidationErrors,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/authentication/auth';
+
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -25,28 +28,41 @@ export class SignUp {
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {
-    this.signupForm = this.formBuilder.group({
-      name: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(100),
+    this.signupForm = this.formBuilder.group(
+      {
+        name: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(100),
+          ],
         ],
-      ],
-      email: [
-        '',
-        [Validators.required, Validators.email, Validators.maxLength(100)],
-      ],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(200),
+        email: [
+          '',
+          [Validators.required, Validators.email, Validators.maxLength(100)],
         ],
-      ],
-    });
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(200),
+          ],
+        ],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validators: this.passwordMatchValidator,
+      }
+    );
+  }
+
+  // Custom Validator
+  passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { passwordMismatch: true };
   }
 
   createAcc() {

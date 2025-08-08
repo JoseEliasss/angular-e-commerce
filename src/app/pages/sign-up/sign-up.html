@@ -1,4 +1,4 @@
-<app-header> </app-header>
+<app-header></app-header>
 
 <div class="signup">
   <img src="assets/login.png" alt="login.png" />
@@ -8,6 +8,7 @@
     <p>Enter your details below</p>
 
     <form [formGroup]="signupForm" class="form" (ngSubmit)="createAcc()">
+      <!-- Name -->
       <span>
         <label for="name">Full Name:</label>
         <input
@@ -22,10 +23,12 @@
         </small>
         <small
           *ngIf="(f['name'].touched || f['name'].dirty) && f['name'].errors?.['minlength']"
-          >(min 2 characters)</small
         >
+          (min 2 characters)
+        </small>
       </span>
 
+      <!-- Email -->
       <span>
         <label for="email">Email or Phone Number</label>
         <input
@@ -40,10 +43,12 @@
         </small>
         <small
           *ngIf="(f['email'].touched || f['email'].dirty) && f['email'].errors?.['email']"
-          >Wrong email format</small
         >
+          Wrong email format
+        </small>
       </span>
 
+      <!-- Password -->
       <span>
         <label for="password">Password</label>
         <input
@@ -56,11 +61,30 @@
         >
           Password is required
         </small>
-
         <small
           *ngIf="(f['password'].touched || f['password'].dirty) && f['password'].errors?.['minlength']"
         >
           Password must be at least 6 characters
+        </small>
+      </span>
+
+      <!-- Confirm Password -->
+      <span>
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          formControlName="confirmPassword"
+        />
+        <small
+          *ngIf="(f['confirmPassword'].touched || f['confirmPassword'].dirty) && f['confirmPassword'].errors?.['required']"
+        >
+          Confirm Password is required
+        </small>
+        <small
+          *ngIf="signupForm.errors?.['passwordMismatch'] && f['confirmPassword'].touched"
+        >
+          Passwords do not match
         </small>
       </span>
 
