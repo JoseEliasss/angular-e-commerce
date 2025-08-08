@@ -4,6 +4,8 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  justify-content: center;
+  align-items: center;
 
   h2 {
     text-align: center;
@@ -39,8 +41,7 @@
 }
 .avatar-block {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  justify-content: center; /* Centers horizontally */
   margin-bottom: 1rem;
 }
 

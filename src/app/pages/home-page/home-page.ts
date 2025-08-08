@@ -45,12 +45,6 @@ export class HomePage {
     private productService: ProductService
   ) {}
 
-  // ngOnInit(): void {
-  //   this.productService.getProducts().subscribe((data) => {
-  //     this.products = data;
-  //   });
-  // }
-
   gotToAllProducts() {
     this.router.navigate(['/allproducts']);
   }
